@@ -7,14 +7,14 @@ export default class Card extends Component {
   addCard = () => {
     const event = { name: this.state.name };
 
+    console.log(event);
+
     if (event.name && event.name.length > 0) {
-      console.log('Event Success');
       axios
-        .get('/api/events')
+        .get('/api/event')
         .then(res => {
           if (res.data) {
-            this.props.getEvents();
-            this.setState({ name: '' });
+            console.log(res.data);
           }
         })
         .catch(err => console.log(err));
@@ -25,12 +25,13 @@ export default class Card extends Component {
 
   handleChange = e => {
     this.setState({
-      action: e.target.value
+      name: e.target.value
     });
   };
 
   render() {
-    let { action } = this.state;
+    let { name } = this.state;
+
     return (
       <div>
         <input type='text' onChange={this.handleChange} value={name} />

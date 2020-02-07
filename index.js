@@ -1,9 +1,24 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const routes = require('./routes/api');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
 
 const PORT = process.env.PORT || 5000;
+
+mongoose
+  .connect(encodeURI(process.env.DB), {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log(`Database connected succesfully`))
+  .catch(err => console.log(err));
+
+// Mongoose promise depricated, override with node
+mongoose.Promise = global.Promise;
 
 // Helps with CORS when accessing the API from different domains
 app.use((req, res, next) => {
@@ -16,8 +31,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  res.send('Welcome to Express');
+app.use(bodyParser.json());
+
+app.use('/api', routes);
+
+app.use((err, req, res, next) => {
+  console.log(err);
+  next();
 });
 
 app.listen(PORT, () => {

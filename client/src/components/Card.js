@@ -35,7 +35,7 @@ export default class Card extends Component {
     return (
       <div>
         <input type='text' onChange={this.handleChange} value={name} />
-        <button onClick={this.addCard}>add card</button>
+        <button onClick={this.addCard}>Add card</button>
       </div>
     );
   }

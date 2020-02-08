@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 export default class Card extends Component {
-  state = {};
+  state = {
+    name: ''
+  };
 
   addCard = () => {
     const event = { name: this.state.name };
@@ -11,16 +13,25 @@ export default class Card extends Component {
 
     if (event.name && event.name.length > 0) {
       axios
-        .get('/api/event')
+        .post('/api/event', { name: event.name })
         .then(res => {
           if (res.data) {
             console.log(res.data);
           }
         })
         .catch(err => console.log(err));
+
+      this.setState({ name: '' });
     } else {
       console.log('input field required');
     }
+  };
+
+  getCards = () => {
+    axios
+      .get('/api/event')
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
   };
 
   handleChange = e => {
@@ -36,6 +47,7 @@ export default class Card extends Component {
       <div>
         <input type='text' onChange={this.handleChange} value={name} />
         <button onClick={this.addCard}>Add card</button>
+        <button onClick={this.getCards}>Get cards</button>
       </div>
     );
   }

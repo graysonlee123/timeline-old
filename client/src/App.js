@@ -1,16 +1,14 @@
 import React from 'react';
 
-import Card from '../src/components/Card';
+import Navigation from '../src/components/Navigaton';
 import Sidebar from '../src/components/Sidebar/Sidebar';
-import Button from '../src/components/Button';
+import Card from '../src/components/Card';
+// import Button from '../src/components/Button';
 
 function App() {
   return (
     <div className='app'>
-      <Button buttonText='Regular Button' />
-      <Button buttonText='Accent Button' buttonStyle='accent' />
-      <Button buttonText='Danger Button' buttonStyle='danger' />
-      <Button buttonText='Inverted Button' buttonStyle='inverted' />
+      <Navigation />
       <Sidebar />
       <Card />
     </div>

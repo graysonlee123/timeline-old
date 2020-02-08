@@ -19,7 +19,7 @@ export default class Button extends Component {
 
   render() {
     return (
-      <a className={this.state.buttonClass.join(' ')} href='#'>
+      <a className={this.state.buttonClass.join(' ')} href='/'>
         {this.props.buttonText || 'Button'}
       </a>
     );

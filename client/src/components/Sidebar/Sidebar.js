@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Sidebar extends Component {
   render() {
     return (
-      <div>
+      <div id='sidebar'>
         <div className='quick-navigation'>
           <div className='nav-date-wrapper'>
             <span>v</span>

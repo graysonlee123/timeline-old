@@ -1,13 +1,29 @@
 .button {
   padding: 12px 24px;
   border-radius: 100px;
-  border: 1px solid #313131;
-  text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 700;
   text-decoration: none;
-  letter-spacing: 4px;
   font-family: sans-serif;
   font-size: 15px;
+  color: #313131;
+  background-color: #FFFFFF;
+  transition: 300ms ease;
+}
+.button:hover {
+  color: white;
+  background-color: #1765EC;
+  border-color: #1765EC;
+}
+.button:not(:last-child) {
+  margin-right: 24px;
+}
+.button.accent {
+  background-color: #1765EC;
+  color: #FFFFFF;
+}
+.button.accent:hover {
+  color: #313131;
+  background-color: #FFFFFF;
 }
 
 #sidebar {

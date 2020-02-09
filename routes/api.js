@@ -9,6 +9,60 @@ router.get('/event', (req, res, next) => {
     .catch(next);
 });
 
+// Read all events
+router.get('/events', (req, res, next) => {
+  res.json([
+    {
+      userId: '123',
+      date: Date.now(),
+      name: 'Event Name 2',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, enim autem nulla dolor voluptate eos unde dolorum, cum labore, accusantium ab voluptas quasi iusto sequi.',
+      tags: ['Tag 1', 'Tag 2']
+    },
+    {
+      userId: '123',
+      date: Date.parse(new Date(Date.UTC(96, 1, 2, 3, 4, 5))),
+      name: 'Event Name 3',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, enim autem nulla dolor voluptate eos unde dolorum, cum labore, accusantium ab voluptas quasi iusto sequi.',
+      tags: ['Tag 1', 'Tag 2']
+    },
+    {
+      userId: '123',
+      date: Date.parse(new Date(Date.UTC(96, 1, 4, 3, 4, 5))),
+      name: 'Event Name 4',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, enim autem nulla dolor voluptate eos unde dolorum, cum labore, accusantium ab voluptas quasi iusto sequi.',
+      tags: ['Tag 1', 'Tag 2']
+    },
+    {
+      userId: '123',
+      date: Date.parse(new Date(Date.UTC(96, 2, 2, 3, 4, 5))),
+      name: 'Event Name 3',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, enim autem nulla dolor voluptate eos unde dolorum, cum labore, accusantium ab voluptas quasi iusto sequi.',
+      tags: ['Tag 1', 'Tag 2']
+    },
+    {
+      userId: '123',
+      date: Date.parse(new Date(Date.UTC(2001, 1, 2, 3, 4, 5))),
+      name: 'Event Name 2',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, enim autem nulla dolor voluptate eos unde dolorum, cum labore, accusantium ab voluptas quasi iusto sequi.',
+      tags: ['Tag 1', 'Tag 2']
+    },
+    {
+      userId: '123',
+      date: Date.parse(new Date(Date.UTC(2004, 2, 2, 3, 4, 5))),
+      name: 'Event Name 3',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, enim autem nulla dolor voluptate eos unde dolorum, cum labore, accusantium ab voluptas quasi iusto sequi.',
+      tags: ['Tag 1', 'Tag 2']
+    }
+  ]);
+});
+
 router.post('/event', (req, res, next) => {
   if (req.body.name) {
     Event.create(req.body)

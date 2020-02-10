@@ -89,7 +89,7 @@ export default class Sidebar extends Component {
               </div>
               <div className='accordian-months'>
                 {Object.keys(sidebar[year]).map((month, i) => (
-                  <div key={i}>{monthNames[month - 1]}</div>
+                  <div key={i}>{monthNames[month]}</div>
                 ))}
               </div>
             </div>

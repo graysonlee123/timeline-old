@@ -64,7 +64,7 @@ export default class Sidebar extends Component {
       });
 
     return (
-      <div id='sidebar'>
+      <aside>
         <div className='accordians-wrapper'>
           {this.state.loading && <Spinner />}
           {Object.keys(sidebar).map((year, i) => (
@@ -116,7 +116,7 @@ export default class Sidebar extends Component {
           ))} */}
         </div>
         <div className='new-event'>+ New Event</div>
-      </div>
+      </aside>
     );
   }
 }

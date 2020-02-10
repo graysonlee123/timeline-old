@@ -1,27 +1,21 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 export default class Button extends Component {
-  state = {
-    buttonStyle: this.props.buttonStyle || '',
-    buttonClass: ['button']
-  };
-
-  // Sets button classes. 'danger', 'accent', 'inverted'
-  componentDidMount = state => {
-    const { buttonStyle } = this.props || false;
-
-    if (buttonStyle) {
-      this.setState({
-        buttonClass: [...this.state.buttonClass, buttonStyle]
-      });
-    }
-  };
+  state = {};
 
   render() {
     return (
-      <a className={this.state.buttonClass.join(' ')} href='/'>
+      <Link
+        className={classNames({
+          button: true,
+          button_accent: this.props.buttonStyle === 'accent'
+        })}
+        to={this.props.to}
+      >
         {this.props.buttonText || 'Button'}
-      </a>
+      </Link>
     );
   }
 }

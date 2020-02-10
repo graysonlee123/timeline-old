@@ -4,7 +4,7 @@ export default class Spinner extends Component {
   render() {
     return (
       <div className='spinner'>
-        <h2>Loading...</h2>
+        <div className='loading-text'>Loading</div>
         <div>
           <div className='loader'></div>
         </div>

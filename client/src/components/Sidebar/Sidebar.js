@@ -22,8 +22,6 @@ export default class Sidebar extends Component {
           events: data.data,
           loading: false
         });
-
-        console.log('Events: ', this.state.events);
       })
       .catch(err => console.log(err));
   };
@@ -50,8 +48,6 @@ export default class Sidebar extends Component {
         month: elem.dataset.eventmonth
       }
     });
-
-    console.log(elem, elem.dataset.eventid);
   };
 
   render() {
@@ -81,8 +77,6 @@ export default class Sidebar extends Component {
         if (sidebar[year][month] === undefined) sidebar[year][month] = [];
         sidebar[year][month].push(e);
       });
-
-    console.log('Sidebar organization: ', sidebar);
 
     return (
       <aside>

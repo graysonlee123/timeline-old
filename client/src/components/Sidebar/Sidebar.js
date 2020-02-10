@@ -131,15 +131,6 @@ export default class Sidebar extends Component {
               </div>
             </div>
           ))}
-          {/* 
-          {Object.keys(sidebar).map((year, i) => (
-            <div key={i} className='months-wrapper'>
-              <div>{year}</div>
-              {Object.keys(sidebar[year]).map((month, i) => (
-                <div key={i}>{monthNames[month - 1]}</div>
-              ))}
-            </div>
-          ))} */}
         </div>
         <div className='new-event'>+ New Event</div>
       </aside>

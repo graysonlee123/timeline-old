@@ -30,6 +30,22 @@ router.get('/events', (req, res, next) => {
     },
     {
       userId: '123',
+      date: Date.parse(new Date(Date.UTC(2020, 2, 2, 3, 4, 5))),
+      name: 'Event Name 3',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, enim autem nulla dolor voluptate eos unde dolorum, cum labore, accusantium ab voluptas quasi iusto sequi.',
+      tags: ['Tag 1', 'Tag 2']
+    },
+    {
+      userId: '123',
+      date: Date.parse(new Date(Date.UTC(2020, 2, 12, 3, 4, 5))),
+      name: 'Event Name 3',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, enim autem nulla dolor voluptate eos unde dolorum, cum labore, accusantium ab voluptas quasi iusto sequi.',
+      tags: ['Tag 1', 'Tag 2']
+    },
+    {
+      userId: '123',
       date: Date.parse(new Date(Date.UTC(96, 1, 4, 3, 4, 5))),
       name: 'Event Name 4',
       description:

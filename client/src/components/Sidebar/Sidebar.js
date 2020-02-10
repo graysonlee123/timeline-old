@@ -7,7 +7,11 @@ import Spinner from '../Spinner';
 export default class Sidebar extends Component {
   state = {
     years: [],
-    loading: true
+    loading: true,
+    activeDate: {
+      year: '',
+      month: ''
+    }
   };
 
   componentDidMount = () => {
@@ -18,6 +22,8 @@ export default class Sidebar extends Component {
           events: data.data,
           loading: false
         });
+
+        console.log('Events: ', this.state.events);
       })
       .catch(err => console.log(err));
   };
@@ -34,6 +40,19 @@ export default class Sidebar extends Component {
       months.style.display = 'block';
     }
   }
+
+  handleChangeDate = e => {
+    const elem = e.currentTarget;
+
+    this.setState({
+      activeDate: {
+        year: elem.dataset.eventyear,
+        month: elem.dataset.eventmonth
+      }
+    });
+
+    console.log(elem, elem.dataset.eventid);
+  };
 
   render() {
     const events = this.state.events;
@@ -62,6 +81,8 @@ export default class Sidebar extends Component {
         if (sidebar[year][month] === undefined) sidebar[year][month] = [];
         sidebar[year][month].push(e);
       });
+
+    console.log('Sidebar organization: ', sidebar);
 
     return (
       <aside>
@@ -92,8 +113,13 @@ export default class Sidebar extends Component {
                     key={i}
                     className={classNames({
                       'accordian-month': true,
-                      'active-month': i === 0
+                      'active-month':
+                        this.state.activeDate.year === year &&
+                        this.state.activeDate.month === month
                     })}
+                    data-eventyear={year}
+                    data-eventmonth={month}
+                    onClick={this.handleChangeDate}
                   >
                     {monthNames[month]}
                     <span>

@@ -51,7 +51,7 @@ nav {
   z-index: 10;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .loader {
@@ -145,6 +145,13 @@ h2 {
   letter-spacing: 16px;
   text-transform: uppercase;
   font-weight: 300;
+}
+
+a {
+  color: #313131;
+}
+a.light {
+  color: #FFFFFF;
 }
 
 .app {

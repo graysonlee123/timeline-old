@@ -32,10 +32,10 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 12px;
+  padding: 0;
   border-right: 1px solid #E1E1E1;
   padding-top: 82px;
-  z-index: -1;
+  z-index: 1;
 }
 
 nav {
@@ -60,16 +60,48 @@ nav {
 
 .accordian-year {
   cursor: pointer;
+  padding: 12px;
+}
+.accordian-year svg {
+  vertical-align: text-top;
+  transition: 300ms ease;
+}
+.accordian-year span {
+  font-weight: 700;
+  font-size: 32px;
+}
+.accordian-year.accordian-active {
+  background-color: rgba(23, 101, 236, 0.15);
+}
+.accordian-year.accordian-active svg {
+  transform: rotate(90deg);
+}
+.accordian-year.accordian-active span {
+  color: #1765EC;
 }
 
 .accordian-months {
-  height: 0px;
+  display: none;
   overflow: hidden;
-  transition: 300ms ease;
+  padding: 24px 6px;
+  border-bottom: 1px solid #E1E1E1;
 }
 
-.accordian-active {
-  background-color: red;
+.accordian-month {
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 21px;
+}
+.accordian-month span {
+  float: right;
+  color: rgba(49, 49, 49, 0.5);
+}
+.accordian-month.active-month {
+  background-color: rgba(23, 101, 236, 0.15);
+  color: #1765EC;
+}
+.accordian-month.active-month span {
+  color: rgba(23, 101, 236, 0.5);
 }
 
 @keyframes spin {
@@ -88,12 +120,17 @@ body {
   margin: 0;
   background-color: #fff;
   color: #313131;
+  font-family: "Noto-Sans", sans-serif;
 }
 
 h1 {
   font-size: 64px;
-  font-weight: semibold;
+  font-weight: 700;
   letter-spacing: 8px;
+}
+
+main {
+  margin-left: 172px;
 }
 
 /*# sourceMappingURL=index.css.map */

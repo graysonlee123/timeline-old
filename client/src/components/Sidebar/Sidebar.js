@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import classNames from 'classnames';
 
 import Spinner from '../Spinner';
 
@@ -22,15 +23,15 @@ export default class Sidebar extends Component {
   };
 
   handleAccordian(e) {
-    const elem = e.target;
+    const elem = e.currentTarget;
     const months = elem.nextElementSibling;
 
     if (elem.classList.contains('accordian-active')) {
       elem.classList.remove('accordian-active');
-      months.style.height = '0px';
+      months.style.display = 'none';
     } else {
       elem.classList.add('accordian-active');
-      months.style.height = 'auto';
+      months.style.display = 'block';
     }
   }
 
@@ -62,8 +63,6 @@ export default class Sidebar extends Component {
         sidebar[year][month].push(e);
       });
 
-    console.log(sidebar);
-
     return (
       <div id='sidebar'>
         <div className='accordians-wrapper'>
@@ -85,11 +84,23 @@ export default class Sidebar extends Component {
                     fill='#313131'
                   />
                 </svg>
-                {year}
+                <span>{' ' + year}</span>
               </div>
               <div className='accordian-months'>
                 {Object.keys(sidebar[year]).map((month, i) => (
-                  <div key={i}>{monthNames[month]}</div>
+                  <div
+                    key={i}
+                    className={classNames({
+                      'accordian-month': true,
+                      'active-month': i === 0
+                    })}
+                  >
+                    {monthNames[month]}
+                    <span>
+                      {sidebar[year][month].length} Event
+                      {sidebar[year][month].length > 1 && 's'}
+                    </span>
+                  </div>
                 ))}
               </div>
             </div>

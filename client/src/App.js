@@ -10,7 +10,9 @@ function App() {
     <div className='app'>
       <Navigation />
       <Sidebar />
-      <Card />
+      <main>
+        <Card />
+      </main>
     </div>
   );
 }

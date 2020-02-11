@@ -5,6 +5,7 @@ import Navigation from '../src/components/Navigaton';
 import Sidebar from '../src/components/Sidebar/Sidebar';
 import AppHeader from '../src/components/AppHeader';
 import Card from '../src/components/Card';
+import NewEventForm from '../src/components/New Event/NewEventForm';
 // import Button from '../src/components/Button';
 
 function App() {
@@ -17,7 +18,9 @@ function App() {
             renders the first one that matches the current URL. */}
 
         <Switch>
-          <Route path='/timeline/add-event'>Add Event</Route>
+          <Route path='/timeline/add-event'>
+            <NewEventForm />
+          </Route>
           <Route path='/timeline'>
             <div className='timeline_wrapper'>
               <Sidebar />

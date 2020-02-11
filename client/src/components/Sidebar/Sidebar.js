@@ -3,6 +3,7 @@ import axios from 'axios';
 import classNames from 'classnames';
 
 import Spinner from '../Spinner';
+import NewEvent from '../NewEvent';
 
 export default class Sidebar extends Component {
   state = {
@@ -126,7 +127,7 @@ export default class Sidebar extends Component {
             </div>
           ))}
         </div>
-        <div className='new-event'>+ New Event</div>
+        <NewEvent />
       </aside>
     );
   }

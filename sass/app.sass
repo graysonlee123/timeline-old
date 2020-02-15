@@ -18,7 +18,7 @@ $smooth-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff
 @import 'navigation'
 @import 'spinner'
 @import 'sidebar/accordian/accordian'
-@import 'new_event/new_event'
+@import 'new_event_form/new_event_form'
 
 // Animations
 @keyframes spin 
@@ -64,17 +64,20 @@ a
 
 input, textarea
   font-family: $font-stack
-  font-size: 18px
+  font-size: 1rem
   width: 100%
   display: block
-  padding: 20px
-  margin-bottom: 2rem
+  padding: 16px
+  margin-bottom: 1rem
 
   &:focus
     outline: 1px solid $accent
 
+button[type='submit']
+  
+
 textarea
-  height: 300px
+  height: 200px
   width: 100%
   resize: none
 

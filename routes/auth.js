@@ -16,7 +16,7 @@ router.get('/google',
 router.get('/google/redirect',
   passport.authenticate('google'),
   (req, res) => {
-    res.send('you reached the callback uri')
+    res.redirect('/timeline')
   }
 )
 

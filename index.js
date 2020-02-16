@@ -2,13 +2,28 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+const passport = require('passport');
 const passportSetup = require('./config/passport');
+const cookieSession = require('cookie-session');
+
 require('dotenv').config();
 
 const app = express();
 
 const PORT = process.env.PORT || 5000;
 
+// Setup cookie sessions
+// 'maxAge' in milliseconds
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [process.env.COOKIE_KEY]
+}))
+
+// Initialize passport sessions
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect to our database
 mongoose
   .connect(encodeURI(process.env.DB), {
     useNewUrlParser: true,

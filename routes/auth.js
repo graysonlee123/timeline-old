@@ -1,19 +1,15 @@
 const router = require('express').Router();
+const passport = require('passport');
 
-// @route   POST auth/login
-// @desc    ---
-// @access  Private
-router.get('/login', (req, res) => {
-  res.json({msg: 'to login screen'})
-});
+router.get('/google',
+  passport.authenticate('google', {
+    scope: ['profile']
+  })
+);
 
-// router.get('/login/google', (req, res) => {
-//   res.json({msg: 'Logging in with Google...'});
-// });
-
-// @route   GET auth/google
+// @route   GET auth/google/redirect
 // @desc    Callback for google to redirect to. Grabs code from Google.
-// @access  Public
+// @access  Private
 router.get('/google/redirect',
   passport.authenticate('google'),
   (req, res) => {

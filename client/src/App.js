@@ -36,7 +36,7 @@ function App() {
           <Route path='/auth/login'>
             <div>
               <h3>Login using:</h3>
-              <button>Google</button>
+              <a href='http://localhost:5000/auth/google'>Google</a>
             </div>
           </Route>
           <Route path='/'>

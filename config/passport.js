@@ -1,9 +1,12 @@
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+require('dotenv').config();
 
 passport.use(new GoogleStrategy({
-    // Options for the strategy
-
-}), () => {
-    // Passport callback function
-})
+    clientID: process.env.CLIENTID,
+    clientSecret: process.env.SECRET,
+    callbackURL: '/auth/google/redirect'
+}, () => {
+    console.log('passport callback function fired')
+    }
+));

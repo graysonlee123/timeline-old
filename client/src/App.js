@@ -1,23 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Navigation from '../src/components/Navigaton';
-import Sidebar from '../src/components/Sidebar/Sidebar';
-import AppHeader from '../src/components/AppHeader';
-import Card from '../src/components/Card';
-import NewEventForm from '../src/components/New Event/NewEventForm';
+import Routes from './components/Routing/Routes';
+import Landing from './components/Landing/Landing';
 // import Button from '../src/components/Button';
+
 
 function App() {
   return (
     <Router>
       <div className='app'>
         <Navigation />
+        <Switch>
+          <Route exact path='/' component={Landing}/>
+          <Route component={Routes} />
+        </Switch>
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
 
-        <Switch>
+        {/* <Switch>
           <Route path='/timeline/add-event'>
             <NewEventForm />
           </Route>
@@ -55,7 +58,7 @@ function App() {
               </ul>
             </div>
           </Route>
-        </Switch>
+        </Switch> */}
       </div>
     </Router>
   );

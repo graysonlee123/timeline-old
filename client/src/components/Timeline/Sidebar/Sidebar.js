@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import classNames from 'classnames';
 
-import Spinner from '../Spinner';
+import Spinner from '../../Spinner';
 import NewEvent from '../New Event/NewEvent';
 
 export default class Sidebar extends Component {

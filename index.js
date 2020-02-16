@@ -33,6 +33,9 @@ mongoose
   .then(() => console.log(`Database connected succesfully`))
   .catch(err => console.log(err));
 
+// Serve public folder
+app.use(express.static('public'))
+
 // Mongoose promise depricated, override with node
 mongoose.Promise = global.Promise;
 

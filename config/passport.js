@@ -6,7 +6,7 @@ passport.use(new GoogleStrategy({
     clientID: process.env.CLIENTID,
     clientSecret: process.env.SECRET,
     callbackURL: '/auth/google/redirect'
-}, () => {
-    console.log('passport callback function fired')
+}, (accesstoken, refreshToken, profileInformation, done) => {
+    console.log('passport callback function fired \n', accesstoken, refreshToken, profileInformation, done)
     }
 ));

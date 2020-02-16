@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const passport = require('passport');
 
+// @route   GET auth/google
+// @desc    Gets the Google login screen
+// @access  Private
 router.get('/google',
   passport.authenticate('google', {
     scope: ['profile']

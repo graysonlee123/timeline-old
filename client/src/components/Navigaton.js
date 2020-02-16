@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 
 export default class Navigaton extends Component {
+  state = {
+    loggedIn: false
+  }
+
   render() {
     return (
       <nav>
@@ -13,8 +17,8 @@ export default class Navigaton extends Component {
           </Link>
         </span>
         <span>
-          <Button buttonText='Account' to='/account' />
-          <Button buttonText='Log Out' to='/logout' buttonStyle='accent' />
+          {this.state.loggedIn ? <Button buttonText='Account' to='/account' /> : <Button buttonText='Login' to='/login' />}
+          {this.state.loggedIn && <Button buttonText='Log Out' to='/logout' buttonStyle='accent' />}
         </span>
       </nav>
     );

@@ -15,7 +15,8 @@ const PORT = process.env.PORT || 5000;
 // Setup cookie sessions
 // 'maxAge' in milliseconds
 app.use(cookieSession({
-  maxAge: 24 * 60 * 60 * 1000,
+  name: 'session',
+  maxAge: (24 * 60 * 60 * 1000),
   keys: [process.env.COOKIE_KEY]
 }))
 
@@ -48,7 +49,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.use('/api/events', require('./routes/api'));
+app.use('/api', require('./routes/api'));
 app.use('/api/login', require('./routes/users'));
 app.use('/auth', require('./routes/auth'));
 

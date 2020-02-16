@@ -17,7 +17,7 @@ export default class Navigaton extends Component {
           </Link>
         </span>
         <span>
-          {this.state.loggedIn ? <Button buttonText='Account' to='/account' /> : <Button buttonText='Login' to='/auth/login' />}
+          {this.state.loggedIn ? <Button buttonText='Account' to='/account' /> : <Button buttonText='Login' to='/login' />}
           {this.state.loggedIn && <Button buttonText='Log Out' to='/auth/logout' buttonStyle='accent' />}
         </span>
       </nav>

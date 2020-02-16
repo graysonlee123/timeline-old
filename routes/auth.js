@@ -10,13 +10,17 @@ router.get('/google',
   })
 );
 
+router.get('/test', () => {
+  console.log('TEST LINK HIT')
+})
+
 // @route   GET auth/google/redirect
 // @desc    Callback for google to redirect to. Grabs code from Google.
 // @access  Private
 router.get('/google/redirect',
-  passport.authenticate('google'),
+  passport.authenticate('google', { failureRedirect: '/login', session: true}),
   (req, res) => {
-    res.redirect('/timeline')
+    res.redirect('http://localhost:3000/timeline');
   }
 )
 

@@ -33,6 +33,12 @@ function App() {
           <Route path='/account'>
             <div>Account page</div>
           </Route>
+          <Route path='/auth/login'>
+            <div>
+              <h3>Login using:</h3>
+              <button>Google</button>
+            </div>
+          </Route>
           <Route path='/'>
             <div>
               <h1>Landing Page</h1>

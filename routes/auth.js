@@ -7,9 +7,9 @@ router.get('/login', (req, res) => {
   res.json({msg: 'to login screen'})
 });
 
-router.get('/google', (req, res) => {
-  // Passport interactions handling
-});
+// router.get('/login/google', (req, res) => {
+//   res.json({msg: 'Logging in with Google...'});
+// });
 
 router.get('/logout', (req, res) => {
   // handle with passport

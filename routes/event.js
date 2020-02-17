@@ -25,7 +25,7 @@ router.post(
       .then(newEvent => res.json(newEvent))
       .catch(err => {
         res.status(400).json(err);
-        console.log('/event POST Error:', err);
+        console.log('/event POST error:', err);
       });
   }
 );

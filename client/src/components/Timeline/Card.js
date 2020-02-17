@@ -9,8 +9,6 @@ export default class Card extends Component {
   addCard = () => {
     const event = { name: this.state.name };
 
-    console.log(event);
-
     if (event.name && event.name.length > 0) {
       axios
         .post('/api/event', { name: event.name })

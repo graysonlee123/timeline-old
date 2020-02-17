@@ -1,10 +1,10 @@
+const cookieSession = require('cookie-session');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 const passport = require('passport');
 const passportSetup = require('./config/passport');
-const cookieSession = require('cookie-session');
 
 require('dotenv').config();
 
@@ -18,7 +18,7 @@ app.use(cookieSession({
   name: 'session',
   maxAge: (24 * 60 * 60 * 1000),
   keys: [process.env.COOKIE_KEY]
-}))
+}));
 
 // Initialize passport sessions
 app.use(passport.initialize());
@@ -32,9 +32,6 @@ mongoose
   })
   .then(() => console.log(`Database connected succesfully`))
   .catch(err => console.log(err));
-
-// Serve public folder
-app.use(express.static('public'))
 
 // Mongoose promise depricated, override with node
 mongoose.Promise = global.Promise;
@@ -53,6 +50,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use('/api', require('./routes/api'));
+app.use('/event', require('./routes/event'));
 app.use('/api/login', require('./routes/users'));
 app.use('/auth', require('./routes/auth'));
 

@@ -12,7 +12,9 @@ export default class NewEventForm extends Component {
     e.preventDefault();
   
     axios.post('/event', {
-      name: this.state.name
+      name: this.state.name,
+      date: Date.now(),
+      description: this.state.description
     }).then(data => console.log('sent. received: ', data)).catch(err => console.log(err))
   }
 

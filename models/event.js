@@ -14,6 +14,10 @@ const EventSchema = new Schema({
   description: {
     type: String,
     required: [true, 'The event description is required']
+  },
+  userId: {
+    type: String,
+    required: [true, 'The user id is required']
   }
 });
 

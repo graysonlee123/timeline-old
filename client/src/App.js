@@ -1,13 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import Navigation from '../src/components/Navigaton';
+
+// Components
+import Navigation from './components/Navigation';
 import Routes from './components/Routing/Routes';
 import Landing from './components/Landing/Landing';
 
-function App() {
+// Redux functions
+import { toggleAuth } from './actions/action.js'
+
+const App = ({setAuth, isAuthenticated}) => {
   return (
     <div className='app'>
-      <Navigation />
+      <Navigation authenticated={isAuthenticated} />
+      <button onClick={() => setAuth(true)}>Login</button>
+      <button onClick={() => setAuth(false)}>Logout</button>
       <Switch>
         <Route exact path='/' component={Landing}/>
         <Route component={Routes} />
@@ -16,4 +24,16 @@ function App() {
   );
 }
 
-export default App;
+// State here refers to Redux State
+const mapStateToProps = state => ({
+  isAuthenticated: state.authenticated
+})
+
+const mapDispatchToProps = dispatch => ({
+  setAuth: bool => dispatch(toggleAuth(bool))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

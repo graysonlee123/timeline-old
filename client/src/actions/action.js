@@ -1,5 +1,5 @@
-export const SET_AUTH = 'SET_AUTH'
+export const SET_AUTH = 'SET_AUTH';
 
-export default function toggleAuth(bool) {
+export const toggleAuth = function(bool) {
     return { type: SET_AUTH, bool }
 }

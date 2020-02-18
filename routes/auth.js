@@ -12,10 +12,6 @@ router.get(
   })
 );
 
-router.get("/test", () => {
-  console.log("TEST LINK HIT");
-});
-
 // @route   GET auth/google/redirect
 // @desc    Callback for google to redirect to. Grabs code from Google.
 // @access  Private
@@ -23,7 +19,7 @@ router.get(
   "/google/redirect",
   passport.authenticate("google"),
   (req, res) => {
-    res.redirect("http://localhost:3000/");
+    res.redirect('http://localhost:3000/home')
   }
 );
 
@@ -31,7 +27,7 @@ router.get(
 // @desc    A simple URL to check if the user is authenticated
 // @access  Private
 router.get("/validate", validator, (req, res) => {
-  res.status(200).json(req.session.passport);
+  res.status(200).json(req.session);
 });
 
 router.get("/logout", (req, res) => {

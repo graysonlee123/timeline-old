@@ -1,5 +1,5 @@
-export const SET_AUTH = 'SET_AUTH';
+export const SET_SESSION = 'SET_SESSION';
 
-export const toggleAuth = function(bool) {
-    return { type: SET_AUTH, bool }
+export const setSession = function(data) {
+    return { type: SET_SESSION, data }
 }

@@ -24,7 +24,7 @@ const Routes = ({authenticated}) => {
 }
 
 const mapStateToProps = state => ({
-  authenticated: state.authenticated
+  session: state.session
 });
 
 export default connect(mapStateToProps)(Routes);

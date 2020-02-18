@@ -21,9 +21,9 @@ router.get("/test", () => {
 // @access  Private
 router.get(
   "/google/redirect",
-  passport.authenticate("google", { failureRedirect: "/login", session: true }),
+  passport.authenticate("google"),
   (req, res) => {
-    res.redirect("http://localhost:3000/timeline");
+    res.redirect("http://localhost:3000/");
   }
 );
 

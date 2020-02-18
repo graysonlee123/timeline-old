@@ -8,15 +8,13 @@ import Routes from './components/Routing/Routes';
 import Landing from './components/Landing/Landing';
 
 // Redux functions
-import { toggleAuth } from './actions/action.js'
+import { setSession } from './actions/action.js'
 
 const App = ({setAuth, isAuthenticated}) => {
   return (
     <div className='app'>
       <Navigation authenticated={isAuthenticated} />
-      <button onClick={() => setAuth(true)}>Login</button>
-      <button onClick={() => setAuth(false)}>Logout</button>
-      <Switch>
+\      <Switch>
         <Route exact path='/' component={Landing}/>
         <Route component={Routes} />
       </Switch>
@@ -30,7 +28,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  setAuth: bool => dispatch(toggleAuth(bool))
+  setAuth: data => dispatch(setSession(data))
 })
 
 export default connect(

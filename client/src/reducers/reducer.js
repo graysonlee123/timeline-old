@@ -1,15 +1,14 @@
-import { SET_AUTH } from '../actions/action'
+import { SET_SESSION } from '../actions/action'
 
 const initialState = {
-  authenticated: false,
-  userData: {}
+  session: {}
 };
 
 function timelineApp(state = initialState, action) {
   switch (action.type) {
-    case SET_AUTH:
+    case SET_SESSION:
       return Object.assign({}, state, {
-        authenticated: action.bool
+        session: action.data
       });
     default:
       return state;

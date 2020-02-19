@@ -16,7 +16,7 @@ const App = ({setSession, authenticated, logOut}) => {
       <Navigation authenticated={authenticated} logOut={logOut} />
       <Switch>
         <Route exact path='/' component={Landing}/>
-        <Routes setSession={setSession} />
+        <Routes setSession={setSession} authenticated={authenticated} />
       </Switch>
     </div>
   );

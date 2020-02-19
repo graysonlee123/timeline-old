@@ -12,6 +12,8 @@ const session = (state = initialState, action) => {
         authenticated: action.session.authenticated,
         userId: action.session.userId
       });
+    case "LOGOUT":
+      return {...state, authenticated: false, userId: null}
     default:
       return state;
   }

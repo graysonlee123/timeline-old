@@ -10,13 +10,13 @@ import Landing from './components/Landing/Landing';
 // Redux functions
 import {setSession, logOut} from './actions/action'
 
-const App = ({setSession, authenticated, logOut}) => {
+const App = ({setSession, authenticated, userId, logOut}) => {
   return (
     <div className='app'>
       <Navigation authenticated={authenticated} logOut={logOut} />
       <Switch>
         <Route exact path='/' component={Landing}/>
-        <Routes setSession={setSession} authenticated={authenticated} />
+        <Routes setSession={setSession} authenticated={authenticated} userId={userId}/>
       </Switch>
     </div>
   );
@@ -24,7 +24,8 @@ const App = ({setSession, authenticated, logOut}) => {
 
 // State here refers to Redux State
 const mapStateToProps = state => ({
-  authenticated: state.session.authenticated
+  authenticated: state.session.authenticated,
+  userId: state.session.userId
 })
 
 const mapDispatchToProps = dispatch => ({

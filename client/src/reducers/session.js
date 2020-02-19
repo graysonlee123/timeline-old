@@ -1,5 +1,3 @@
-import { SET_SESSION } from "../actionTypes";
-
 const initialState = {
   authenticated: false,
   userId: null

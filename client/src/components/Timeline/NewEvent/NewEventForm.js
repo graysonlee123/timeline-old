@@ -12,7 +12,7 @@ export default class NewEventForm extends Component {
     e.preventDefault();
 
     axios
-      .post("/event", {
+      .post(`/event/user/${this.props.userId}`, {
         name: this.state.name,
         date: Date.now(),
         description: this.state.description

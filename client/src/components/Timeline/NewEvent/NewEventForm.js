@@ -8,17 +8,32 @@ export default class NewEventForm extends Component {
     description: ""
   };
 
-  handleFormSubmit = e => {
+  handleFormSubmit = async e => {
     e.preventDefault();
 
-    axios
-      .post(`/event/user/${this.props.userId}`, {
-        name: this.state.name,
-        date: Date.now(),
-        description: this.state.description
+    try {
+      let response = await fetch(`/event/${this.props.userId}`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          name: this.state.name,
+          date: this.state.date,
+          description: this.state.description
+        })
       })
-      .then(data => console.log("sent. received: ", data))
-      .catch(err => console.log("error: ", err));
+      
+      let responseJSON = await response.json();
+
+      console.log(responseJSON);
+
+      return responseJSON;
+    } catch(err) {
+      console.error(err)
+    }
   };
 
   handleChange = e => {
@@ -45,7 +60,7 @@ export default class NewEventForm extends Component {
               name="name"
             />
             <input
-              type="text"
+              type="date"
               placeholder="Event Date"
               value={this.state.date}
               onChange={this.handleChange}

@@ -13,8 +13,12 @@ const Routes = ({setSession, authenticated, userId}) => {
   return (
     <>
       <Switch>
-        <Route exact path='/login' component={Login}/>
-        <Route exact path='/home' render={props => <Home setSession={setSession}/>} />
+        <Route exact path='/login'>
+          <Login />
+        </Route>
+        <Route exact path='/home'>
+          <Home setSession={setSession} />
+        </Route>
         <PrivateRoute exact path='/my-profile'>
           <Profile />
         </ PrivateRoute>

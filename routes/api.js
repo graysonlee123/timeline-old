@@ -11,7 +11,7 @@ router.get('/event', (req, res, next) => {
 
 // Read all events
 router.get('/events', (req, res, next) => {
-  res.json([
+  res.status(400).json([
     {
       userId: '123',
       date: Date.now(),

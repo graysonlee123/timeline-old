@@ -21,13 +21,17 @@ class Navigation extends React.Component {
         <span>
           {this.props.authenticated ? (
             <>
-            <Button buttonText="Account" to="/account" />
+            <Button to="/account">
+              Account
+            </Button>
             <span onClick={this.handleLogout} className='button'>
               Log Out
             </span> 
             </>
           ) : (
-            <Button buttonText="Login" to="/login" />
+            <Button to="/login">
+              Login
+            </Button>
           )}
         </span>
       </nav>

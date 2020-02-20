@@ -14,7 +14,7 @@ export default class Button extends Component {
         })}
         to={this.props.to}
       >
-        {this.props.buttonText || 'Button'}
+        {this.props.children}
       </Link>
     );
   }

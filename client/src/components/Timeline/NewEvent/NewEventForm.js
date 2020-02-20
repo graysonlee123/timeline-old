@@ -18,7 +18,7 @@ class NewEventForm extends Component {
     this.setState({ formErrors: {}, isLoading: true});
 
     try {
-      let response = await fetch(`/event/${this.props.userId}`, {
+      let response = await fetch(`/event`, {
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -5,11 +5,11 @@ const db = require("../models");
 const validator = require("../middleware/auth");
 const { check, validationResult, sanitizeBody } = require("express-validator");
 
-// @route   /event/:id
-// @desc    Post event by user ID
-// @auth    Yes
+// @route   POST /event
+// @desc    Post event using session user ID
+// @access  Private
 router.post(
-  "/:id",
+  "/",
   validator,
   [
     check("name")
@@ -65,5 +65,30 @@ router.post(
       });
   }
 );
+
+// @route   GET /event/my-events
+// @desc    Get the user's events
+// @access  Private
+router.get('/my-events', validator, async (req, res) => {
+  const { user } = req.session.passport;
+
+  try {
+    const events = await db.Event.find({userId: user});
+
+    res.json(events);
+  } catch {
+    
+  }
+
+  // res.json([
+  //   {
+  //     userId: '123',
+  //     date: Date.now(),
+  //     name: 'Event Name 2',
+  //     description:
+  //       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, enim autem nulla dolor voluptate eos unde dolorum, cum labore, accusantium ab voluptas quasi iusto sequi.',
+  //     tags: ['Tag 1', 'Tag 2']
+  //   }])
+});
 
 module.exports = router;

@@ -3,15 +3,22 @@ import React, { Component } from 'react';
 import Sidebar from './Sidebar/Sidebar';
 import AppHeader from './AppHeader';
 import Card from './Card';
-import axios from 'axios';
+import Spinner from '../Spinner';
 
 export default class Login extends Component {
-  getUserEvents = async () => {
-    try {
-      const events = axios.get('/events/user/' + this.props.userId);
+  state = {
+    isLoading: true
+  }
 
-      if (events) {
-        console.log(events)
+  componentDidMount = async () => {
+    try {
+      const events = await fetch('/event/my-events');
+      const res = await events.json()
+
+      if (res) {
+        console.log(res);
+        // Render components
+        this.setState({events: res, isLoading: false})
       }
     } catch(err) {
       console.log(err);
@@ -24,7 +31,16 @@ export default class Login extends Component {
         <Sidebar />
         <main>
           <AppHeader />
-          <Card />
+          <div className='cards_container'>
+            {this.state.isLoading ? <Spinner /> : this.state.events.map((event, i) => {
+              const {date, name, description} = event;
+              
+              return (
+                <Card name={name} date={date} description={description} key={i}/>
+              )
+            }
+            )}
+          </div>
         </main>
       </div>
     );

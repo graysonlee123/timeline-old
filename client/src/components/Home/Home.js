@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import { Redirect } from "react-router-dom";
+import Button from '../Button';
 import Spinner from '../Spinner'
 
 export default class Home extends React.Component {
@@ -32,7 +33,13 @@ export default class Home extends React.Component {
       <>
         {this.state.isLoading && <Spinner />}
         {this.state.redirect && !this.state.isLoading && <Redirect to="/login" />}
-        <div>Home</div>
+        <div>
+          <h3>Home</h3>
+          <Button to='/timeline'>
+            To Timeline
+          </Button>
+        </div>
+
       </>
     );
   }

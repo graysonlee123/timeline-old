@@ -1,18 +1,21 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
 
+import Spinner from '../../Spinner';
+
 class NewEventForm extends Component {
   state = {
     name: "",
     date: "",
     description: "",
-    formErrors: {}
+    formErrors: {},
+    isLoading: false
   };
 
   handleFormSubmit = async e => {
     e.preventDefault();
 
-    this.setState({ formErrors: {} });
+    this.setState({ formErrors: {}, isLoading: true});
 
     try {
       let response = await fetch(`/event/${this.props.userId}`, {
@@ -32,6 +35,8 @@ class NewEventForm extends Component {
       let responseJSON = await response.json();
 
       console.log(responseJSON);
+
+      this.setState({isLoading: false})
 
       if (responseJSON.errors) {
         responseJSON.errors.forEach(err => {
@@ -89,7 +94,7 @@ class NewEventForm extends Component {
               onChange={this.handleChange}
               name="description"
             />
-            <button type="submit">Add</button>
+            {this.state.isLoading ? <Spinner /> : <button type="submit">ADD EVENT</button>}
           </form>
         </div>
       </div>

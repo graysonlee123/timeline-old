@@ -18,7 +18,7 @@ router.post(
     check('description').not().isEmpty().isString().trim()
   ],
   async (req, res) => {
-    const user = '5e48d95376be3b2e74137742';
+    const { user } = req.session.passport;
     const { name, date, description } = req.body;
 
     const errors = validationResult(req);

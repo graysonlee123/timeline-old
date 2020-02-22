@@ -1,4 +1,24 @@
+.button_container {
+  display: block;
+  width: 100%;
+}
+
+.button_wrapper {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.button_wrapper.left {
+  text-align: left;
+}
+.button_wrapper.center {
+  text-align: center;
+}
+.button_wrapper.right {
+  text-align: right;
+}
+
 .button {
+  display: inline-block;
   padding: 12px 24px;
   border-radius: 100px;
   cursor: pointer;
@@ -21,9 +41,19 @@
 .button.button_accent {
   background-color: #1765EC;
   color: #FFFFFF;
+  border: 1px solid #1765EC;
 }
 .button.button_accent:hover {
   color: #313131;
+  background-color: #FFFFFF;
+}
+.button.button_danger {
+  background-color: #ff5050;
+  color: #FFFFFF;
+  border: 1px solid #ff5050;
+}
+.button.button_danger:hover {
+  color: #ff5050;
   background-color: #FFFFFF;
 }
 

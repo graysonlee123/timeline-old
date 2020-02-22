@@ -1,4 +1,24 @@
+$buttonMarginY: 2rem
+  
+.button_container
+  display: block
+  width: 100%
+
+.button_wrapper
+  margin-top: $buttonMarginY
+  margin-bottom: $buttonMarginY
+
+  &.left
+    text-align: left
+
+  &.center
+    text-align: center
+
+  &.right
+    text-align: right
+  
 .button 
+  display: inline-block
   padding: 12px 24px
   border-radius: 100px
   cursor: pointer
@@ -21,7 +41,17 @@
   &.button_accent
     background-color: $accent
     color: $white
+    border: 1px solid $accent
 
     &:hover 
       color: $dark
+      background-color: $white
+
+  &.button_danger
+    background-color: $danger
+    color: $white
+    border: 1px solid $danger
+
+    &:hover
+      color: $danger
       background-color: $white

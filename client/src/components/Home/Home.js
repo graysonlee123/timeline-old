@@ -35,7 +35,7 @@ export default class Home extends React.Component {
         {this.state.redirect && !this.state.isLoading && <Redirect to="/login" />}
         <div>
           <h3>Home</h3>
-          <Button to='/timeline'>
+          <Button left to='/timeline'>
             To Timeline
           </Button>
         </div>

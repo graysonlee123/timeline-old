@@ -84,6 +84,12 @@ nav {
   align-items: center;
   justify-content: space-between;
 }
+nav .nav-right {
+  display: flex;
+}
+nav .nav-right > div:not(:last-child) {
+  margin-right: 12px;
+}
 
 .spinner {
   padding: 12px;

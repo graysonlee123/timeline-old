@@ -37,8 +37,6 @@ export default class Login extends Component {
             accordianLayout[year][month].push(event);
           });
 
-        console.log(accordianLayout);
-
         // Render components by setting all the data
         this.setState({
           fetchEventsData: res,
@@ -60,8 +58,8 @@ export default class Login extends Component {
 
     this.setState({
       activeDate: {
-        year: elem.dataset.eventyear,
-        month: elem.dataset.eventmonth
+        year: parseInt(elem.dataset.eventyear),
+        month: parseInt(elem.dataset.eventmonth)
       }
     });
   };

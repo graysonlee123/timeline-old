@@ -79,16 +79,6 @@ router.get('/my-events', validator, async (req, res) => {
   } catch {
     
   }
-
-  // res.json([
-  //   {
-  //     userId: '123',
-  //     date: Date.now(),
-  //     name: 'Event Name 2',
-  //     description:
-  //       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, enim autem nulla dolor voluptate eos unde dolorum, cum labore, accusantium ab voluptas quasi iusto sequi.',
-  //     tags: ['Tag 1', 'Tag 2']
-  //   }])
 });
 
 module.exports = router;

@@ -1,22 +1,10 @@
 import React, { Component } from "react";
-import axios from "axios";
 import classNames from "classnames";
 
 import Spinner from "../../Spinner";
 import NewEvent from "../NewEvent/NewEvent";
 
 export default class Sidebar extends Component {
-  // componentDidMount = () => {
-  //   axios
-  //     .get('/api/events')
-  //     .then(data => {
-  //       this.setState({
-  //         events: data.data,
-  //         loading: false
-  //       });
-  //     })
-  //     .catch(err => console.log(err));
-  // };
 
   handleAccordian(e) {
     const elem = e.currentTarget;
@@ -30,17 +18,6 @@ export default class Sidebar extends Component {
       months.style.display = "block";
     }
   }
-
-  // handleChangeDate = e => {
-  //   const elem = e.currentTarget;
-
-  //   this.setState({
-  //     activeDate: {
-  //       year: elem.dataset.eventyear,
-  //       month: elem.dataset.eventmonth
-  //     }
-  //   });
-  // };
 
   render() {
     const monthNames = [
@@ -57,32 +34,6 @@ export default class Sidebar extends Component {
       "November",
       "December"
     ];
-    // const events = this.state.events;
-    // const sidebar = {};
-    // // const monthNames = [
-    // //   'January',
-    // //   'February',
-    // //   'March',
-    // //   'April',
-    // //   'May',
-    // //   'June',
-    // //   'July',
-    // //   'August',
-    // //   'September',
-    // //   'October',
-    // //   'November',
-    // //   'December'
-    // // ];
-
-    // events &&
-    //   events.forEach(e => {
-    //     const year = new Date(e.date).getFullYear();
-    //     const month = new Date(e.date).getMonth();
-
-    //     if (sidebar[year] === undefined) sidebar[year] = {};
-    //     if (sidebar[year][month] === undefined) sidebar[year][month] = [];
-    //     sidebar[year][month].push(e);
-    //   });
 
     return (
       <div className='accordian_container'>

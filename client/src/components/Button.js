@@ -39,9 +39,15 @@ export default class Button extends Component {
                 </Link>
               )
             ) : (
-              <span className={this.state.classList}>
-                {this.props.children}
-              </span>              
+              this.props.onClick ? (
+                <span onClick={this.props.onClick} className={this.state.classList}>
+                  {this.props.children}
+                </span>              
+              ) : (
+                <span className={this.state.classList}>
+                  {this.props.children}
+                </span>              
+              )
             )
           }
         </div>

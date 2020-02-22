@@ -10,16 +10,12 @@ class Navigation extends Component {
     this.state = {};
 
     // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
-  // handleLogout = () => {
-  //   this.props.logOut();
-  //   this.props.history.push("/login");
-  // }
-
-  handleClick() {
-    console.log('this: ', this)
+  handleLogout = () => {
+    this.props.logOut();
+    this.props.history.push("/login");
   }
 
   render() {
@@ -34,7 +30,7 @@ class Navigation extends Component {
           {this.props.authenticated ? (
             <>
               <Button to="/account">Account</Button>
-              <Button onClick={this.handleClick} buttonStyle="danger">
+              <Button onClick={this.handleLogout} buttonStyle="danger">
                 Log Out
               </Button>
             </>

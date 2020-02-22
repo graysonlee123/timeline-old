@@ -13,12 +13,15 @@ export default class Home extends React.Component {
 
   componentDidMount = async () => {
     try {
-      const req = await axios.get("/auth/validate");
+      const {data} = await axios.get("/auth/validate");
 
-      if (req.data.passport.user) {
+      console.log('Data received from /auth: ', data)
+
+      if (data.dbUser._id) {
         this.props.setSession({
           authenticated: true,
-          userId: req.data.passport.user
+          user: data.dbUser,
+          events: data.dbEvents
         });
 
         this.setState({ isLoading: false });
@@ -39,7 +42,7 @@ export default class Home extends React.Component {
         ) : (
           <div>
             <h3>Home</h3>
-            <Button center to="/timeline" buttonStyle='accent'>
+            <Button center to="/timeline" buttonStyle="accent">
               To My Timeline
             </Button>
           </div>

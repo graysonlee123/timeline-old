@@ -1,13 +1,25 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { PropTypes } from "prop-types";
 
 import Button from "./Button";
 
-class Navigation extends React.Component {
-  handleLogout() {
-    this.props.logOut();
-    this.props.history.push("/login");
+class Navigation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+
+    // This binding is necessary to make `this` work in the callback
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  // handleLogout = () => {
+  //   this.props.logOut();
+  //   this.props.history.push("/login");
+  // }
+
+  handleClick() {
+    console.log('this: ', this)
   }
 
   render() {
@@ -22,7 +34,7 @@ class Navigation extends React.Component {
           {this.props.authenticated ? (
             <>
               <Button to="/account">Account</Button>
-              <Button onClick={this.handleLogout} buttonStyle="danger">
+              <Button onClick={this.handleClick} buttonStyle="danger">
                 Log Out
               </Button>
             </>

@@ -8,7 +8,8 @@ const session = (state = initialState, action) => {
     case "SET_SESSION":
       return Object.assign({}, state, {
         authenticated: action.session.authenticated,
-        userId: action.session.userId
+        user: action.session.user,
+        events: action.session.events
       });
     case "LOGOUT":
       return {...state, authenticated: false, userId: null}

@@ -9,7 +9,7 @@ import NewEventForm from '../Timeline/NewEvent/NewEventForm';
 import NotFound from '../NotFound';
 import PrivateRoute from '../../containers/PrivateRoute';
 
-const Routes = ({setSession, authenticated, userId}) => {  
+const Routes = ({setSession, authenticated, user, events}) => {  
   return (
     <>
       <Switch>
@@ -23,10 +23,10 @@ const Routes = ({setSession, authenticated, userId}) => {
           <Profile />
         </ PrivateRoute>
         <PrivateRoute exact path='/timeline' authenticated={authenticated}>
-          <Timeline userId={userId}/>
+          <Timeline user={user} events={events}/>
         </PrivateRoute>
         <PrivateRoute exact path='/timeline/add-event' authenticated={authenticated}>
-          <NewEventForm authenticated={authenticated} userId={userId} />
+          <NewEventForm authenticated={authenticated} user={user} />
         </PrivateRoute>
         <Route component={NotFound}/>
       </Switch>

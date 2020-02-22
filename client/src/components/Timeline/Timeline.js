@@ -16,41 +16,63 @@ export default class Login extends Component {
   };
 
   componentDidMount = async () => {
-    try {
-      const events = await fetch("/event/my-events");
-      const res = await events.json();
+    const { events } = this.props;
+    console.log("Timeline props: ", events);
 
-      if (res) {
-        console.log(res);
+    const sidebarObject = {};
 
-        // Figure out the years
-        const accordianLayout = {};
+    events.forEach(event => {
+      const year = new Date(event.date).getFullYear();
+      const month = new Date(event.date).getMonth();
 
-        res &&
-          res.forEach(event => {
-            const year = new Date(event.date).getFullYear();
-            const month = new Date(event.date).getMonth();
+      if (sidebarObject[year] === undefined) sidebarObject[year] = {};
+      if (sidebarObject[year][month] === undefined)
+        sidebarObject[year][month] = [];
+      sidebarObject[year][month].push(event);
+    });
 
-            if (accordianLayout[year] === undefined) accordianLayout[year] = {};
-            if (accordianLayout[year][month] === undefined)
-              accordianLayout[year][month] = [];
-            accordianLayout[year][month].push(event);
-          });
+    // Render components by setting all the data
+    this.setState({
+      isLoading: false,
+      events: events,
+      activeDate: {
+        year: new Date(events[0].date).getFullYear(),
+        month: new Date(events[0].date).getMonth()
+      },
+      sidebarObject: sidebarObject
+    });
 
-        // Render components by setting all the data
-        this.setState({
-          fetchEventsData: res,
-          isLoading: false,
-          activeDate: {
-            year: new Date(res[0].date).getFullYear(),
-            month: new Date(res[0].date).getMonth()
-          },
-          accordianLayout: accordianLayout
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    // // From before storing events in redux...
+    // try {
+    //   const events = await fetch("/event/my-events");
+    //   const res = await events.json();
+    //   if (res) {
+    //     console.log(res);
+    //     // Figure out the years
+    //     const accordianLayout = {};
+    //     res &&
+    //       res.forEach(event => {
+    //         const year = new Date(event.date).getFullYear();
+    //         const month = new Date(event.date).getMonth();
+    //         if (accordianLayout[year] === undefined) accordianLayout[year] = {};
+    //         if (accordianLayout[year][month] === undefined)
+    //           accordianLayout[year][month] = [];
+    //         accordianLayout[year][month].push(event);
+    //       });
+    //     // Render components by setting all the data
+    //     this.setState({
+    //       fetchEventsData: res,
+    //       isLoading: false,
+    //       activeDate: {
+    //         year: new Date(res[0].date).getFullYear(),
+    //         month: new Date(res[0].date).getMonth()
+    //       },
+    //       accordianLayout: accordianLayout
+    //     });
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   handleChangeDate = e => {
@@ -69,7 +91,7 @@ export default class Login extends Component {
       <div className="timeline_wrapper">
         <Sidebar
           handleChangeDate={this.handleChangeDate}
-          accordianLayout={this.state.accordianLayout}
+          sidebarObject={this.state.sidebarObject}
           isLoading={this.state.isLoading}
           activeDate={this.state.activeDate}
         />
@@ -79,15 +101,15 @@ export default class Login extends Component {
             {this.state.isLoading ? (
               <Spinner />
             ) : (
-              this.state.fetchEventsData.map((event, i) => {
-                const { date, name, description } = event;
+              this.state.events.map((event, i) => {
+                const { date, name, description, _id: id } = event;
 
                 return (
                   <Card
                     name={name}
                     date={date}
                     description={description}
-                    key={i}
+                    key={id}
                   />
                 );
               })

@@ -41,7 +41,7 @@ export default class Sidebar extends Component {
           {this.props.isLoading ? (
             <Spinner />
           ) : (
-            Object.keys(this.props.accordianLayout).map((year, i) => (
+            Object.keys(this.props.sidebarObject).map((year, i) => (
               <div className="accordian" key={i}>
                 <div className="accordian-year" onClick={this.handleAccordian}>
                   <svg
@@ -61,7 +61,7 @@ export default class Sidebar extends Component {
                   <span>{" " + year}</span>
                 </div>
                 <div className="accordian-months">
-                  {Object.keys(this.props.accordianLayout[year]).map(
+                  {Object.keys(this.props.sidebarObject[year]).map(
                     (month, i) => (
                       <div
                         key={i}
@@ -77,8 +77,8 @@ export default class Sidebar extends Component {
                       >
                         {monthNames[month]}
                         <span>
-                          {this.props.accordianLayout[year][month].length} Event
-                          {this.props.accordianLayout[year][month].length > 1 &&
+                          {this.props.sidebarObject[year][month].length} Event
+                          {this.props.sidebarObject[year][month].length > 1 &&
                             "s"}
                         </span>
                       </div>

@@ -9,7 +9,7 @@ export default class Landing extends Component {
         <Button to="/timeline" left buttonStyle="accent">
           Go to your Timeline
         </Button>
-        <Button to="/timeline" center buttonStyle="accent">
+        <Button to="/timeline" center regular buttonStyle="accent">
           Go to your Timeline
         </Button>
         <Button to="/timeline" buttonStyle="accent">

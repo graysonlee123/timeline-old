@@ -30,13 +30,13 @@ $buttonMarginY: 2rem
   background-color: $white
   transition: 300ms ease
 
+  & > i.fa 
+    margin-right: 14px
+
   &:hover
-    color: white
+    color: $white
     background-color: $accent
     border-color: $accent
-
-  &:not(:last-child)
-    margin-right: 24px
 
   &.button_accent
     background-color: $accent
@@ -44,7 +44,7 @@ $buttonMarginY: 2rem
     border: 1px solid $accent
 
     &:hover 
-      color: $dark
+      color: $accent
       background-color: $white
 
   &.button_danger

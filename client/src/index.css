@@ -30,13 +30,13 @@
   background-color: #FFFFFF;
   transition: 300ms ease;
 }
+.button > i.fa {
+  margin-right: 14px;
+}
 .button:hover {
-  color: white;
+  color: #FFFFFF;
   background-color: #1765EC;
   border-color: #1765EC;
-}
-.button:not(:last-child) {
-  margin-right: 24px;
 }
 .button.button_accent {
   background-color: #1765EC;
@@ -44,7 +44,7 @@
   border: 1px solid #1765EC;
 }
 .button.button_accent:hover {
-  color: #313131;
+  color: #1765EC;
   background-color: #FFFFFF;
 }
 .button.button_danger {

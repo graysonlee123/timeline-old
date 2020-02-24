@@ -85,7 +85,6 @@ export default class Login extends Component {
       }
     });
   };
-
   render() {
     return (
       <div className="timeline_wrapper">
@@ -101,18 +100,28 @@ export default class Login extends Component {
             {this.state.isLoading ? (
               <Spinner />
             ) : (
-              this.state.events.map((event, i) => {
-                const { date, name, description, _id: id } = event;
+              Object.keys(this.state.sidebarObject).map((year, i) => (
+                <div className='timeline_year_row' key={i}>
+                  <h1>
+                    {year}
+                  </h1>
+                  <div className='month_row'>
+                    {year}
+                  </div>
+                </div>
+              ))
+              // this.state.events.map((event, i) => {
+              //   const { date, name, description, _id: id } = event;
 
-                return (
-                  <Card
-                    name={name}
-                    date={date}
-                    description={description}
-                    key={id}
-                  />
-                );
-              })
+              //   return (
+              //     <Card
+              //       name={name}
+              //       date={date}
+              //       description={description}
+              //       key={id}
+              //     />
+              //   );
+              // })
             )}
           </div>
         </main>
@@ -120,3 +129,23 @@ export default class Login extends Component {
     );
   }
 }
+
+// Can do foreach and push matches to events array
+const events = [
+  {
+    year: 2019,
+    events: [
+      {
+        name: 'blah'
+      }
+    ]
+  },
+  {
+    year: 2010,
+    events: [
+      {
+        name: 'blah'
+      }
+    ]
+  }
+]

@@ -1,6 +1,7 @@
 const initialState = {
   authenticated: false,
-  userId: null
+  user: null,
+  events: []
 };
 
 const session = (state = initialState, action) => {

@@ -39,6 +39,21 @@ router.get("/validate", validator, async (req, res) => {
     const sortedEvents = [];
     const years = [];
 
+    const monthStrings = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ];
+
     // Set unique years
     userEvents.forEach(event => {
       const year = new Date(event.date).getFullYear();
@@ -59,7 +74,7 @@ router.get("/validate", validator, async (req, res) => {
       if (!sortedEvents[yearIdx].months[monthIdx]) {
         sortedEvents[yearIdx].months.push({
           month: month,
-          monthString: month.toString(),
+          monthString: monthStrings[month],
           events: []
         })
       }

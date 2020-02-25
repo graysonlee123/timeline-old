@@ -129,23 +129,3 @@ export default class Login extends Component {
     );
   }
 }
-
-// Can do foreach and push matches to events array
-const events = [
-  {
-    year: 2019,
-    events: [
-      {
-        name: 'blah'
-      }
-    ]
-  },
-  {
-    year: 2010,
-    events: [
-      {
-        name: 'blah'
-      }
-    ]
-  }
-]

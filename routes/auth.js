@@ -39,37 +39,44 @@ router.get("/validate", validator, async (req, res) => {
     const sortedEvents = [];
     const years = [];
 
-    // console.log('USER: ', user);
-    // console.log('EVENTS: ', userEvents);
-
-    // Get unique years
+    // Set unique years
     userEvents.forEach(event => {
       const year = new Date(event.date).getFullYear();
-
+      const month = new Date(event.date).getMonth();
+      
       if (years.indexOf(year) === -1) {
         years.push(year);
         sortedEvents.push({
           year: year,
+          months: []
+        })
+      }
+      
+      // Cool technique here to make working with an array of objects more flexible
+      const yearIdx = sortedEvents.map(e => e.year).indexOf(year);
+      let monthIdx = sortedEvents[yearIdx].months.map(e => e.month).indexOf(month);
+      
+      if (!sortedEvents[yearIdx].months[monthIdx]) {
+        sortedEvents[yearIdx].months.push({
+          month: month,
           events: []
         })
       }
+
+      monthIdx = sortedEvents[yearIdx].months.map(e => e.month).indexOf(month);
+      sortedEvents[yearIdx].months[monthIdx].events.push(event);
     });
-
-    console.log(sortedEvents);
-
-    // Save to sorted object
-    userEvents.forEach(event => {
-      const year = new Date(event.date).getFullYear();
-      // Returns an array of the years, and gets the index of the current event
-      const pos = sortedEvents.map(e => e.year).indexOf(year);
-
-      sortedEvents[pos].events.push(event);
-    })
 
     // const filteredEvents = userEvents.filter(event => new Date(event.date).getFullYear() === 2020)
 
-    console.log('FILTER: ', sortedEvents);
+    console.log('FILTERED: ', JSON.stringify(sortedEvents, null, 2));
 
+    const payload = {
+      user: user,
+      events: sortedEvents
+    }
+
+    res.status(200).json(payload);
   } catch(err) {
     console.log(err);
   }

@@ -15,18 +15,19 @@ export default class Home extends React.Component {
     try {
       const {data} = await axios.get("/auth/validate");
 
-      console.log('Data received from /auth: ', data)
+      console.log('Data received from /auth/validate: ', data)
 
-      if (data.dbUser._id) {
+      if (data.user._id) {
         this.props.setSession({
           authenticated: true,
-          user: data.dbUser,
-          events: data.dbEvents
+          user: data.user,
+          events: data.events
         });
 
         this.setState({ isLoading: false });
       }
     } catch (err) {
+      console.log(err);
       this.setState({ isLoading: false, redirect: true });
     }
   };

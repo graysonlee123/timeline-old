@@ -23,7 +23,7 @@ const Routes = ({setSession, authenticated, user, events}) => {
           <Profile />
         </ PrivateRoute>
         <PrivateRoute exact path='/timeline' authenticated={authenticated}>
-          <Timeline user={user} events={events}/>
+          <Timeline authenticated={authenticated} user={user} events={events}/>
         </PrivateRoute>
         <PrivateRoute exact path='/timeline/add-event' authenticated={authenticated}>
           <NewEventForm authenticated={authenticated} user={user} />

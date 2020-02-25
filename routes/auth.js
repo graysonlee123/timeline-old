@@ -59,6 +59,7 @@ router.get("/validate", validator, async (req, res) => {
       if (!sortedEvents[yearIdx].months[monthIdx]) {
         sortedEvents[yearIdx].months.push({
           month: month,
+          monthString: month.toString(),
           events: []
         })
       }

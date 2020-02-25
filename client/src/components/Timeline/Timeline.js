@@ -13,21 +13,21 @@ export default class Login extends Component {
       year: this.props.events[0].year,
       month: this.props.events[0].months[0].month
     }
-  }
-
-  componentDidMount = async () => {
-  }
+  };
 
   handleChangeDate = e => {
     const elem = e.currentTarget;
 
-    this.setState({
-      activeDate: {
-        year: parseInt(elem.dataset.year),
-        month: parseInt(elem.dataset.month)
-      }
-    });
+    if (elem.dataset.year && elem.dataset.month) {
+      this.setState({
+        activeDate: {
+          year: parseInt(elem.dataset.year),
+          month: parseInt(elem.dataset.month)
+        }
+      });
+    }
   };
+
   render() {
     return (
       <div className="timeline_wrapper">
@@ -43,18 +43,25 @@ export default class Login extends Component {
             {this.state.isLoading ? (
               <Spinner />
             ) : (
-              this.state.events.map(
-                (yearObj, i) => (
-                  <div className='timeline_year_row' key={i}>
-                    <h1>
-                      {yearObj.year}
-                    </h1>
-                    <div className='month_row'>
-                      {yearObj.year}
-                    </div>
+              this.state.events.map((yearObj, i) => (
+                <div className="timeline_year_row" key={i}>
+                  <h1>{yearObj.year}</h1>
+                  <div className="months_row">
+                    {yearObj.months.map((monthObj, j) => (
+                      <div key={j}>
+                        <h4>{monthObj.monthString}</h4>
+                        {monthObj.events.map((event, k) => (
+                          <article key={k} style={{marginLeft: '24px'}}>
+                            <p>{event.date}</p>
+                            <p>{event.name}</p>
+                            <p>{event.description}</p>
+                          </article>
+                        ))}
+                      </div>
+                    ))}
                   </div>
-                )
-              )
+                </div>
+              ))
             )}
           </div>
         </main>

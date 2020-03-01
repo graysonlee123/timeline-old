@@ -9,7 +9,7 @@ import NewEventForm from '../Timeline/NewEvent/NewEventForm';
 import NotFound from '../NotFound';
 import PrivateRoute from '../../containers/PrivateRoute';
 
-const Routes = ({setSession, authenticated, user, events}) => {  
+const Routes = ({setSession, authenticated, user, events = []}) => {  
   return (
     <>
       <Switch>

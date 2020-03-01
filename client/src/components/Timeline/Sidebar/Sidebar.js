@@ -20,14 +20,12 @@ export default class Sidebar extends Component {
 
   render() {
     return (
-      <div className='accordian_container'>
+      <div className="accordian_container">
         <div className="accordians-wrapper">
-          {this.props.isLoading ? (
-            <Spinner />
-          ) : (
+          {this.props.events.length > 0 ? (
             this.props.events.map((yearObj, i) => (
-              <div className='accordian' key={i}> 
-                <div className='accordian-year' onClick={this.handleAccordian}>
+              <div className="accordian" key={i}>
+                <div className="accordian-year" onClick={this.handleAccordian}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="6.385"
@@ -44,12 +42,14 @@ export default class Sidebar extends Component {
                   </svg>
                   <span>{" " + yearObj.year}</span>
                 </div>
-                <div className='accordian-months'>
+                <div className="accordian-months">
                   {yearObj.months.map((monthObj, j) => (
                     <div
                       className={classNames({
-                        'accordian-month': true,
-                        'active-month': this.props.activeDate.year === yearObj.year && this.props.activeDate.month === monthObj.month
+                        "accordian-month": true,
+                        "active-month":
+                          this.props.activeDate.year === yearObj.year &&
+                          this.props.activeDate.month === monthObj.month
                       })}
                       key={j}
                       data-year={yearObj.year}
@@ -59,13 +59,15 @@ export default class Sidebar extends Component {
                       {monthObj.monthString}
                       <span>
                         {monthObj.events.length} Event
-                        {monthObj.events.length > 1 && 's'}
+                        {monthObj.events.length > 1 && "s"}
                       </span>
                     </div>
                   ))}
                 </div>
               </div>
             ))
+          ) : (
+            <div className="accordian">Add a new event below.</div>
           )}
         </div>
         <NewEvent />

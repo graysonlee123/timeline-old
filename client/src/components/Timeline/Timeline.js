@@ -10,8 +10,8 @@ export default class Login extends Component {
     isLoading: false,
     events: this.props.events,
     activeDate: {
-      year: this.props.events[0].year,
-      month: this.props.events[0].months[0].month
+      year: "" && this.props.events[0].year,
+      month: "" && this.props.events[0].months[0].month
     }
   };
 
@@ -34,15 +34,12 @@ export default class Login extends Component {
         <Sidebar
           handleChangeDate={this.handleChangeDate}
           events={this.state.events}
-          isLoading={this.state.isLoading}
           activeDate={this.state.activeDate}
         />
         <main>
-          <AppHeader />
+          <AppHeader user={this.props.user}/>
           <div className="cards_container">
-            {this.state.isLoading ? (
-              <Spinner />
-            ) : (
+            {!this.state.hasError ? (
               this.state.events.map((yearObj, i) => (
                 <div className="timeline_year_row" key={i}>
                   <h1>{yearObj.year}</h1>
@@ -51,7 +48,7 @@ export default class Login extends Component {
                       <div key={j}>
                         <h4>{monthObj.monthString}</h4>
                         {monthObj.events.map((event, k) => (
-                          <article key={k} style={{marginLeft: '24px'}}>
+                          <article key={k} style={{ marginLeft: "24px" }}>
                             <p>{event.date}</p>
                             <p>{event.name}</p>
                             <p>{event.description}</p>
@@ -62,6 +59,8 @@ export default class Login extends Component {
                   </div>
                 </div>
               ))
+            ) : (
+              <div>Add an event in the bottom left!</div>
             )}
           </div>
         </main>

@@ -11,3 +11,8 @@ Timeline for keeping track of life
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs): encryption tool with zero dependencies
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken): an implementation of JSON Web Tokens
 - [express-validator](https://www.npmjs.com/package/express-validation): an express middleware that validates a request and returns a response with errors
+
+## Notes
+
+Test account credentials:
+- User `test@gmail.com` Password `testing`

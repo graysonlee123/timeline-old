@@ -32,14 +32,16 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
 
-    if(!errors.isEmpty()) {
+    if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
     try {
-      const user = await (await User.findById(req.user.id)).isSelected('-password');
-      
-      const {name, date, description} = req.body;
+      const user = await (await User.findById(req.user.id)).isSelected(
+        '-password'
+      );
+
+      const { name, date, description } = req.body;
 
       const newEvent = new Event({
         name: name,
@@ -58,20 +60,44 @@ router.post(
   }
 );
 
-// * @route   POST api/event
+// TODO: Make update event have same validation as posting a new event, so user's can't post an event and change data around
+// ? maybe do this in the model
+
+// * @route   PUT api/event/:id
 // ? @desc    Update an existing event
 // ! @access  Private
-router.post('/', auth, async (req, res) => {
-  // TODO: Update this to work
+router.put('/:id', auth, async (req, res) => {
+  const errors = validationResult(req);
 
-  const { name, date, description, userId, id } = req.body;
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
   try {
-    let event = await Event.findOne({ id: id, userId: req.user.id });
+    const user = await (await User.findById(req.user.id)).isSelected(
+      '-password'
+    );
+
+    const { name, date, description } = req.body;
+
+    let event = await Event.findById(req.params.id);
 
     if (!event) {
       return res.status(400).json({ errors: [{ msg: 'Event not found' }] });
     }
+
+    if (event.userId !== req.user.id) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: 'Not authenticated to update this post' }] });
+    }
+
+    // TODO: Find a better way to do this?
+    event.name = name || event.name;
+    event.date = date || event.date;
+    event.description = description || event.description;
+
+    await event.save();
 
     res.json({ event });
   } catch (err) {

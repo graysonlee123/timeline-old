@@ -7,9 +7,9 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
 
-// @route   GET api/auth
-// @desc    Find user by token
-// @access  Private
+// * @route   GET api/auth
+// ? @desc    Find user by token
+// ! @access  Private
 router.get('/', auth, async (req, res) => {
   try {
     // ? select('-password') removes the password in the response to the user
@@ -22,9 +22,9 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// @route   POST api/auth
-// @desc    Login user & get token
-// @access  Public
+// * @route   POST api/auth
+// ? @desc    Login user & get token
+// ! @access  Public
 router.post(
   '/',
   [

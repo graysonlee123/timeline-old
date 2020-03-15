@@ -8,6 +8,48 @@ const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
 const Event = require('../../models/Event');
 
+// * @route   GET api/event/all
+// ? @desc    Get user's event by id
+// ! @access  Private
+router.get('/all', auth, async (req, res) => {
+  try {
+    let events = await Event.find({ userId: req.user.id });
+
+    if (!events) {
+      return res.status(400).json({ errors: [{ msg: 'Events not found' }] });
+    }
+
+    res.json({ events });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// * @route   GET api/event/:id
+// ? @desc    Get user's event by id
+// ! @access  Private
+router.get('/:id', auth, async (req, res) => {
+  try {
+    let event = await Event.findById(req.params.id);
+
+    if (!event) {
+      return res.status(400).json({ errors: [{ msg: 'Event not found' }] });
+    }
+
+    if (event.userId !== req.user.id) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: 'Not authenticated to view this post' }] });
+    }
+
+    res.json({ event });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 // TODO: Add more validators for length, etc on posting an event
 
 // * @route   POST api/event
@@ -101,8 +143,6 @@ router.put('/:id', auth, async (req, res) => {
     res.status(500).send('Server error');
   }
 });
-
-module.exports = router;
 
 // * @route   DELETE api/event/:id
 // ? @desc    Delete a post

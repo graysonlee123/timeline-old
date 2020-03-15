@@ -7,7 +7,7 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
 
-// * @route   POST api/users
+// * @route   POST api/user
 // ? @desc    Register user
 // ! @access  Public
 router.post(
@@ -73,5 +73,21 @@ router.post(
     }
   }
 );
+
+// * @route   DELETE api/user
+// ? @desc    Delete profile, user, and events
+// ! @access  Private
+router.delete('/', auth, async(req, res) => {
+  try {
+    await Event.deleteMany({ userId: req.user.id });
+    await Profile.findOneAndRemove({ userId: req.user.id });
+    await User.findOneAndRemove({ _id: req.user.id });
+
+    res.json({ msg: 'User, profile, and posts deleted'})
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
 
 module.exports = router;

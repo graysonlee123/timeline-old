@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Define routes
 app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/users', require('./routes/api/users'));
+app.use('/api/user', require('./routes/api/user'));
 app.use('/api/event', require('./routes/api/event'));
 app.use('/api/profile', require('./routes/api/profile'));
 

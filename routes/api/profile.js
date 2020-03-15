@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 
 const Profile = require('../../models/Profile');
+const Event = require('../../models/Event');
+const User = require('../../models/User');
 
 // * @route   GET api/profile/me
 // ? @desc    Get current user's profile
@@ -55,7 +57,7 @@ router.post(
     try {
       // ? Using the upsert option, which makes a new doc if none found
       let profile = await Profile.findOneAndUpdate(
-        { user: req.user.id },
+        { userId: req.user.id },
         { $set: profileFields },
         { new: true, upsert: true }
       );

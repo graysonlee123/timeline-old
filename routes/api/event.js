@@ -74,10 +74,6 @@ router.put('/:id', auth, async (req, res) => {
   }
 
   try {
-    const user = await (await User.findById(req.user.id)).isSelected(
-      '-password'
-    );
-
     const { name, date, description } = req.body;
 
     let event = await Event.findById(req.params.id);
@@ -100,6 +96,34 @@ router.put('/:id', auth, async (req, res) => {
     await event.save();
 
     res.json({ event });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+module.exports = router;
+
+// * @route   DELETE api/event/:id
+// ? @desc    Delete a post
+// ! @access  Private
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    let event = await Event.findById(req.params.id);
+
+    if (!event) {
+      return res.status(400).json({ errors: [{ msg: 'Event not found' }] });
+    }
+
+    if (event.userId !== req.user.id) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: 'Not authenticated to delete this post' }] });
+    }
+
+    await event.remove();
+
+    res.json({ msg: 'Post removed' });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

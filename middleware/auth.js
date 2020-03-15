@@ -1,10 +1,26 @@
-module.exports = function (req, res, next) {
-  // TODO: Write an ACTUAL middleware
-  const authenticated = true;
+const jwt = require('jsonwebtoken');
 
-  if (authenticated) {
-    next();
-  } else {
-    res.status(401).json({msg: 'auth.js is set to false for development'})
+module.exports = function(req, res, next) {
+  // Get token from header
+  const token = req.header('x-auth-token');
+
+  // Check for token
+  if (!token) {
+    return res.status(401).json({ msg: 'No token, authorization denied' });
   }
-}
+
+  // Verify token
+  try {
+    jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
+      if (error) {
+        res.status(401).json({ msg: 'Token is not valid' });
+      } else {
+        req.user = decoded.user;
+        next();
+      }
+    });
+  } catch (err) {
+    console.error('something went wrong with auth middleware');
+    res.status(500).json({ msg: 'Server error' });
+  }
+};

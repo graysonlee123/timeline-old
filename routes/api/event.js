@@ -79,10 +79,6 @@ router.post(
     }
 
     try {
-      const user = await (await User.findById(req.user.id)).isSelected(
-        '-password'
-      );
-
       const { name, date, description } = req.body;
 
       const newEvent = new Event({

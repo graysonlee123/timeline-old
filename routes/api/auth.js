@@ -12,8 +12,7 @@ const User = require('../../models/User');
 // ! @access  Private
 router.get('/', auth, async (req, res) => {
   try {
-    // ? select('-password') removes the password in the response to the user
-    const user = (await User.findById(req.user.id)).isSelected('-password');
+    const user = await User.findById(req.user.id).select('-password');
 
     res.json(user);
   } catch (err) {

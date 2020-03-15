@@ -14,18 +14,43 @@ const Register = () => {
   const { name, email, password, password2 } = formData;
 
   const onChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
 
-    if(password !== password2) {
-      alert('passwords do not match');
-    } else {
-      console.log(formData);
+    try {
+      if (password !== password2) {
+        return alert('passwords do not match');
+      }
+
+      const newUser = {
+        name, 
+        email, 
+        password
+      }
+
+      const config = {
+        'Content-Type': 'application/json'
+      }
+
+      const body = JSON.stringify(newUser);
+
+      let response = await fetch('/api/user', {
+        method: 'POST',
+        headers: config,
+        body
+      });
+
+      let responseJSON = await response.json();
+
+      console.log(responseJSON);
+    } catch (err) {
+      // TODO: Front-end errors, send in redux action?
+      console.log(err);
     }
-  }
+  };
 
   return (
     <Fragment>
@@ -51,10 +76,6 @@ const Register = () => {
             value={email}
             onChange={e => onChange(e)}
           />
-          <small className='form-text'>
-            This site uses Gravatar so if you want a profile image, use a
-            Gravatar email
-          </small>
         </div>
         <div className='form-group'>
           <input

@@ -1,0 +1,12 @@
+.alert {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  width: 320px;
+  margin-left: -160px;
+  padding: 1rem 3rem;
+  border-radius: 24px;
+  background-color: cadetblue;
+}
+
+/*# sourceMappingURL=App.css.map */

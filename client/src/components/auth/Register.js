@@ -50,10 +50,14 @@ const Register = ({ setAlert }) => {
 
       let responseJSON = await response.json();
 
-      console.log(responseJSON);
+      if (responseJSON.errors) {
+        responseJSON.errors.forEach(err => {
+          setAlert(err.msg, 'danger');
+        })
+      }
     } catch (err) {
       // TODO: Front-end errors, send in redux action?
-      console.log(err);
+      setAlert('Error', 'danger');
     }
   };
 

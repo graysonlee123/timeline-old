@@ -1,9 +1,14 @@
 import React, { Fragment, useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+// Actions
+import { setAlert } from '../../actions/alert';
 
 // TODO: Resructure the state
 
-const Register = () => {
+const Register = ({ setAlert }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,18 +27,18 @@ const Register = () => {
 
     try {
       if (password !== password2) {
-        return alert('passwords do not match');
+        setAlert('Passwords do not match', 'danger');
       }
 
       const newUser = {
-        name, 
-        email, 
+        name,
+        email,
         password
-      }
+      };
 
       const config = {
         'Content-Type': 'application/json'
-      }
+      };
 
       const body = JSON.stringify(newUser);
 
@@ -104,4 +109,8 @@ const Register = () => {
   );
 };
 
-export default Register;
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired
+};
+
+export default connect(null, { setAlert })(Register);

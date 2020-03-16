@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 
 // Actions
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth'
 
 // TODO: Resructure the state
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,39 +26,10 @@ const Register = ({ setAlert }) => {
   const onSubmit = async e => {
     e.preventDefault();
 
-    try {
-      if (password !== password2) {
-        setAlert('Passwords do not match', 'danger');
-      }
-
-      const newUser = {
-        name,
-        email,
-        password
-      };
-
-      const config = {
-        'Content-Type': 'application/json'
-      };
-
-      const body = JSON.stringify(newUser);
-
-      let response = await fetch('/api/user', {
-        method: 'POST',
-        headers: config,
-        body
-      });
-
-      let responseJSON = await response.json();
-
-      if (responseJSON.errors) {
-        responseJSON.errors.forEach(err => {
-          setAlert(err.msg, 'danger');
-        })
-      }
-    } catch (err) {
-      // TODO: Front-end errors, send in redux action?
-      setAlert('Error', 'danger');
+    if (password !== password2) {
+      setAlert('Passwords do not match', 'danger');
+    } else {
+      register({ name, email, password });
     }
   };
 
@@ -114,7 +86,8 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
 };
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);

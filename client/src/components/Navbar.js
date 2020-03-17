@@ -14,7 +14,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
         </a>
       </li>
       <li>
-        <Link to="/profile">My Profile</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </li>
     </ul>
   );

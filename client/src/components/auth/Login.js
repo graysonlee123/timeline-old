@@ -1,13 +1,13 @@
-import React, { Fragment, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { login } from "../../actions/auth";
+import React, { Fragment, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../../actions/auth';
 
-const Login = ({ auth: {isAuthenticated, user}, login }) => {
+const Login = ({ auth: { isAuthenticated, user }, login }) => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: ""
+    email: '',
+    password: ''
   });
 
   const { email, password } = formData;
@@ -26,39 +26,39 @@ const Login = ({ auth: {isAuthenticated, user}, login }) => {
     }
   };
 
-  if(isAuthenticated && user) {
-    return <Redirect to="/dashboard"/>
+  if (isAuthenticated && user) {
+    return <Redirect to='/dashboard' />;
   }
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Sign In</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Log in to your timeline
+      <h1>Sign In</h1>
+      <p>
+        <i className='fas fa-user' /> Log in to your timeline
       </p>
-      <form className="form" onSubmit={e => onSubmit(e)}>
-        <div className="form-group">
+      <form onSubmit={e => onSubmit(e)}>
+        <div>
           <input
-            type="email"
-            placeholder="Email Address"
-            name="email"
+            type='email'
+            placeholder='Email Address'
+            name='email'
             value={email}
             onChange={e => onChange(e)}
           />
         </div>
-        <div className="form-group">
+        <div>
           <input
-            type="password"
-            placeholder="Password"
-            name="password"
+            type='password'
+            placeholder='Password'
+            name='password'
             value={password}
             onChange={e => onChange(e)}
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Login" />
+        <input type='submit' value='Login' />
       </form>
-      <p className="my-1">
-        Need to register? <Link to="/register">Sign Up</Link>
+      <p>
+        Need to register? <Link to='/register'>Sign Up</Link>
       </p>
     </Fragment>
   );

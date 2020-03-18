@@ -19,6 +19,7 @@ import Login from './components/auth/Login';
 import Alert from './components/Alert';
 import Dashboard from './components/account/Dashboard';
 import Account from './components/account/Account';
+import NoMatch from './components/NoMatch';
 
 // * We want to check if the user already has a token every time App is loaded
 // * Basically whenever the user refreshes the page
@@ -37,13 +38,14 @@ const App = () => {
       <Router>
         <Fragment>
           <Navbar />
-          <Route exact path='/' component={Landing} />
           <Alert />
           <Switch>
+            <Route exact path='/' component={Landing} />
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
             <PrivateRoute exact path='/dashboard' component={Dashboard} />
             <PrivateRoute exact path='/account' component={Account} />
+            <Route path="*" component={NoMatch} />
           </Switch>
         </Fragment>
       </Router>

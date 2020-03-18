@@ -1,15 +1,15 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { updateProfile } from '../../actions/auth';
+import { updateAccount } from '../../actions/auth';
 
-const Profile = ({ user, updateProfile }) => {
+const Account = ({ user, updateAccount }) => {
   const [formData, setFormData] = useState({
     first_name: user.first_name,
     last_name: user.last_name,
     email: user.email,
     avatar: user.avatar || '',
-    gender: user.gender || ''
+    gender: user.gender
   });
 
   const { first_name, last_name, email, avatar, gender } = formData;
@@ -24,7 +24,7 @@ const Profile = ({ user, updateProfile }) => {
     try {
       const payload = { first_name, last_name, email, avatar, gender };
 
-      updateProfile(payload);
+      updateAccount(payload);
     } catch (err) {
       // TODO: Front-end errors, send in redux action?
       console.log(err);
@@ -33,7 +33,7 @@ const Profile = ({ user, updateProfile }) => {
 
   return (
     <Fragment>
-      <h1>Profile</h1>
+      <h1>Account</h1>
       <h2>Account Information</h2>
       <p>
         <i className='fas fa-user' /> Edit your Account
@@ -81,13 +81,12 @@ const Profile = ({ user, updateProfile }) => {
           />
         </div>
         <div>
-          <input
-            type='text'
-            placeholder='Gender'
-            name='gender'
-            value={gender}
-            onChange={e => onChange(e)}
-          />
+          <select name='gender' value={gender} onChange={e => onChange(e)}>
+            <option value="none"></option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
         </div>
         <input type='submit' value='Save' />
       </form>
@@ -95,8 +94,8 @@ const Profile = ({ user, updateProfile }) => {
   );
 };
 
-Profile.propTypes = {
-  updateProfile: PropTypes.func.isRequired,
+Account.propTypes = {
+  updateAccount: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired
 };
 
@@ -104,4 +103,4 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-export default connect(mapStateToProps, { updateProfile })(Profile);
+export default connect(mapStateToProps, { updateAccount })(Account);

@@ -6,8 +6,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  PROFILE_UPDATE_SUCCESS,
-  PROFILE_UPDATE_FAIL
+  ACCOUNT_UPDATE_SUCCESS,
+  ACCOUNT_UPDATE_FAIL
 } from "../actions/types";
 
 const initialState = {
@@ -44,12 +44,12 @@ export default function(state = initialState, action) {
         loading: false,
         user: null
       };
-    case PROFILE_UPDATE_SUCCESS:
+    case ACCOUNT_UPDATE_SUCCESS:
       return {
         ...state,
         user: payload
       }
-    case PROFILE_UPDATE_FAIL: 
+    case ACCOUNT_UPDATE_FAIL: 
       return {
         ...state
       }

@@ -8,8 +8,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  PROFILE_UPDATE_SUCCESS,
-  PROFILE_UPDATE_FAIL
+  ACCOUNT_UPDATE_SUCCESS,
+  ACCOUNT_UPDATE_FAIL
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -100,7 +100,7 @@ export const logout = () => dispatch => {
   dispatch({ type: LOGOUT });
 };
 
-export const updateProfile = ({ first_name, last_name, email, avatar, gender }) => async dispatch => {
+export const updateAccount = ({ first_name, last_name, email, avatar, gender }) => async dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
@@ -111,15 +111,13 @@ export const updateProfile = ({ first_name, last_name, email, avatar, gender }) 
   try {
     const res = await axios.put("/api/user", body, config);
 
-    console.log("from auth.js action:", res.data);
-
     dispatch({
-      type: PROFILE_UPDATE_SUCCESS,
+      type: ACCOUNT_UPDATE_SUCCESS,
       payload: res.data
     });
 
     dispatch(loadUser());
-    dispatch(setAlert("Your profile has been updated", "success"))
+    dispatch(setAlert("Your account has been updated", "success"))
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -128,7 +126,7 @@ export const updateProfile = ({ first_name, last_name, email, avatar, gender }) 
     }
 
     dispatch({
-      type: PROFILE_UPDATE_FAIL
+      type: ACCOUNT_UPDATE_FAIL
     });
   }
 };

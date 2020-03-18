@@ -27,7 +27,8 @@ const UserSchema = new mongoose.Schema({
     default: "http://localhost:3000/default-avatar.png"
   },
   gender: {
-    type: String
+    type: String,
+    default: 'none'
   }
 });
 

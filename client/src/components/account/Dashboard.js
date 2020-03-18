@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const Dashboard = ({ auth }) => {
-  console.log('auth:', auth);
-
   return (
     <div>
       <h1>Dashboard</h1>
-      <div>Your Name: {auth.user.name}</div>
+      <div>Your Name: {auth.user.first_name}</div>
     </div>
   );
 };

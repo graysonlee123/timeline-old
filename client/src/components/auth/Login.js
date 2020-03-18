@@ -18,8 +18,9 @@ const Login = ({ auth: { isAuthenticated, user }, login }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    login(email, password);
+    
     try {
+      login(email, password);
     } catch (err) {
       // TODO: Front-end errors, send in redux action?
       console.log(err);

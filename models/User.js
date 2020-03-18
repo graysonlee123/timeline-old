@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-  name: {
+  first_name: {
+    type: String,
+    required: true
+  },
+  last_name: {
     type: String,
     required: true
   },
@@ -17,6 +21,13 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  avatar: {
+    type: String,
+    default: "http://localhost:3000/default-avatar.png"
+  },
+  gender: {
+    type: String
   }
 });
 

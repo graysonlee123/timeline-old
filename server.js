@@ -15,7 +15,6 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/user', require('./routes/api/user'));
 app.use('/api/event', require('./routes/api/event'));
-app.use('/api/profile', require('./routes/api/profile'));
 
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {

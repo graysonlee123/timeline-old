@@ -7,17 +7,17 @@ import PropTypes from 'prop-types';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 
-// TODO: Resructure the state
-
 const Register = ({ setAlert, register, auth: { isAuthenticated, user } }) => {
   const [formData, setFormData] = useState({
-    name: '',
+    first_name: '',
+    last_name: '',
     email: '',
+    avatar: '',
     password: '',
     password2: ''
   });
 
-  const { name, email, password, password2 } = formData;
+  const { first_name, last_name, email, avatar, password, password2 } = formData;
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,7 +29,7 @@ const Register = ({ setAlert, register, auth: { isAuthenticated, user } }) => {
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      register({ name, email, password });
+      register({ first_name, last_name, email, avatar, password });
     }
   };
 
@@ -44,9 +44,18 @@ const Register = ({ setAlert, register, auth: { isAuthenticated, user } }) => {
         <div>
           <input
             type='text'
-            placeholder='Name'
-            name='name'
-            value={name}
+            placeholder='First name'
+            name='first_name'
+            value={first_name}
+            onChange={e => onChange(e)}
+          />
+        </div>
+        <div>
+          <input
+            type='text'
+            placeholder='Last name'
+            name='last_name'
+            value={last_name}
             onChange={e => onChange(e)}
           />
         </div>
@@ -56,6 +65,15 @@ const Register = ({ setAlert, register, auth: { isAuthenticated, user } }) => {
             placeholder='Email Address'
             name='email'
             value={email}
+            onChange={e => onChange(e)}
+          />
+        </div>
+        <div>
+          <input
+            type='text'
+            placeholder='Avatar URL'
+            name='avatar'
+            value={avatar}
             onChange={e => onChange(e)}
           />
         </div>

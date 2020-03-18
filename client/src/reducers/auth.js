@@ -5,7 +5,9 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT
+  LOGOUT,
+  PROFILE_UPDATE_SUCCESS,
+  PROFILE_UPDATE_FAIL
 } from "../actions/types";
 
 const initialState = {
@@ -42,6 +44,15 @@ export default function(state = initialState, action) {
         loading: false,
         user: null
       };
+    case PROFILE_UPDATE_SUCCESS:
+      return {
+        ...state,
+        user: payload
+      }
+    case PROFILE_UPDATE_FAIL: 
+      return {
+        ...state
+      }
     case USER_LOADED:
       return {
         ...state,

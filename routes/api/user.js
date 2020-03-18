@@ -16,8 +16,13 @@ router.post(
     check('first_name', 'First name is required')
       .not()
       .isEmpty(),
-    check('last_name', 'Last name is required').not().isEmpty(),
+    check('last_name', 'Last name is required')
+      .not()
+      .isEmpty(),
     check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Password is required')
+      .not()
+      .isEmpty(),
     check(
       'password',
       'Please enter a password with 6 or more characters'
@@ -78,17 +83,49 @@ router.post(
   }
 );
 
+// * @route   PUT api/user
+// ? @desc    Update a user's data
+// ! @access  Private
+router.put('/', [auth, [
+  check('first_name', 'First name is required').not().isEmpty(),
+  check('last_name', 'Last name is required').not().isEmpty(),
+  check('email', 'Please include a valid email').isEmail()
+]], async (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { first_name, last_name, email, avatar, gender } = req.body;
+
+  try {
+    const dbUser = await User.findOneAndUpdate({ _id: req.user.id }, {
+      first_name,
+      last_name,
+      email,
+      avatar,
+      gender
+    }).select('-password');
+
+    res.json(dbUser);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 // * @route   DELETE api/user
 // ? @desc    Delete profile, user, and events
 // ! @access  Private
-router.delete('/', auth, async(req, res) => {
+router.delete('/', auth, async (req, res) => {
   try {
     await Event.deleteMany({ userId: req.user.id });
     await Profile.findOneAndRemove({ userId: req.user.id });
     await User.findOneAndRemove({ _id: req.user.id });
 
-    res.json({ msg: 'User, profile, and posts deleted'})
-  } catch(err) {
+    res.json({ msg: 'User, profile, and posts deleted' });
+  } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
   }

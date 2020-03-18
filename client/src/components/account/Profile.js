@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { updateProfile } from '../../actions/auth';
 
-const Profile = ({ user }) => {
+const Profile = ({ user, updateProfile }) => {
   const [formData, setFormData] = useState({
     first_name: user.first_name,
     last_name: user.last_name,
@@ -21,6 +22,9 @@ const Profile = ({ user }) => {
     e.preventDefault();
 
     try {
+      const payload = { first_name, last_name, email, avatar, gender };
+
+      updateProfile(payload);
     } catch (err) {
       // TODO: Front-end errors, send in redux action?
       console.log(err);
@@ -92,6 +96,7 @@ const Profile = ({ user }) => {
 };
 
 Profile.propTypes = {
+  updateProfile: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired
 };
 
@@ -99,4 +104,4 @@ const mapStateToProps = state => ({
   user: state.auth.user
 });
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, { updateProfile })(Profile);

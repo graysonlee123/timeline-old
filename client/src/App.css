@@ -15,11 +15,13 @@ nav {
   background-image: linear-gradient(45deg, #FF3366, #FF5F58);
 }
 .auth-card-container form {
-  width: 348px;
-  padding: 8rem 6rem;
+  padding-right: 2.4rem;
+  padding-left: 2.4rem;
+  padding-top: 3.6rem;
+  padding-bottom: 3.6rem;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(45deg, #ffffff, #ffffff);
-  border-radius: 4px;
-  box-shadow: 0 1px 1px rgba(31, 34, 46, 0.15), 0 2px 2px rgba(31, 34, 46, 0.15), 0 4px 4px rgba(31, 34, 46, 0.15), 0 8px 8px rgba(31, 34, 46, 0.15), 0 16px 16px rgba(31, 34, 46, 0.15);
 }
 .auth-card-container form a {
   color: rgba(51, 55, 71, 0.5);
@@ -43,18 +45,43 @@ nav {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
+}
+.auth-card-container form .submit-group .button {
+  margin-right: 2.4rem;
+}
+@media only screen and (min-width: 446px) {
+  .auth-card-container form {
+    padding-right: 6rem;
+    padding-left: 6rem;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .auth-card-container form {
+    padding-right: 6rem;
+    padding-left: 6rem;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    width: 460px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(31, 34, 46, 0.15), 0 2px 2px rgba(31, 34, 46, 0.15), 0 4px 4px rgba(31, 34, 46, 0.15), 0 8px 8px rgba(31, 34, 46, 0.15), 0 16px 16px rgba(31, 34, 46, 0.15);
+  }
 }
 
-.auth-card-container.register form {
-  width: 464px;
+div.dual-field input {
+  width: 100%;
 }
-.auth-card-container.register form div.dual-field {
-  display: flex;
-  justify-content: space-between;
-}
-.auth-card-container.register form div.dual-field input {
-  width: 48%;
+@media only screen and (min-width: 768px) {
+  div.dual-field {
+    display: flex;
+    justify-content: space-between;
+  }
+  div.dual-field input {
+    width: 48%;
+  }
 }
 
 section {
@@ -225,10 +252,9 @@ input[type=week]:focus::placeholder {
   border-color: transparent;
   border-image: linear-gradient(45deg, #FF3366, #FF5F58);
   border-image-slice: 1;
-  border-padding: 12px 24px;
-  border-transition: 300ms;
-  border-cursor: pointer;
-  border-transition: 300ms;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: 300ms;
 }
 .button:hover {
   color: #333747;

@@ -34,6 +34,23 @@ $spacing-5: 10rem
 $max-width: 972px
 
 // Mixins
+
+/// Adds a breakpoint 
+/// 
+/// @param {string} $width
+///   The size of the target breakpoint 
+/// @param {string} $type
+///   min or max width
+$breakpoints: ( "extra-small": 446px, "small": 768px, "medium": 992px, "large": 640px, "extra-large": 768px )
+  
+@mixin mq($width, $type: min)
+    @if map_has_key($breakpoints, $width)
+        $width: map_get($breakpoints, $width)
+        @if $type == max
+            $width: $width - 1px
+        @media only screen and (#{$type}-width: $width) 
+            @content
+
 @mixin faint-light($percent: -50%)
   color: color.scale($light, $alpha: $percent)
 
@@ -73,7 +90,6 @@ $spacings: (1: $spacing-1, 2: $spacing-2, 3: $spacing-3, 4: $spacing-4, 5: $spac
     padding-bottom: map-get($spacings, $spacing)
   @else 
     padding-#{$direction}: map-get($spacings, $spacing)
-
 
 @mixin is-narrow()
   max-width: $max-width
@@ -133,7 +149,6 @@ a
 
 p
   font-family: $body-font
-  
   font-size: 1.4rem
   line-height: 1.6
 
@@ -183,10 +198,9 @@ input[type="week"]
     color: transparent
     image: $primary-gradient
     image-slice: 1
-    padding: 12px 24px
-    transition: 300ms
-    cursor: pointer
-    transition: 300ms
+  padding: 12px 24px
+  cursor: pointer
+  transition: 300ms
 
   &:hover
     color: $dark

@@ -1,0 +1,22 @@
+#alerts-container
+  position: absolute
+  right: 0
+  left: 0
+  top: 80px
+  height: 80px
+
+  .alert
+    @include margin(bottom, 2)
+
+    $alert-height: 60px
+    height: $alert-height
+    line-height: $alert-height
+    font-size: 1.6rem
+    text-align: center
+    color: $light
+    border-radius: 4px
+    width: 90%
+    margin-left: auto
+    margin-right: auto
+    background-image: $primary-gradient
+    box-shadow: $dark-shadow

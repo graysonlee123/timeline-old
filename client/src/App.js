@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './Reset.css';
 import './App.css';
@@ -37,18 +37,16 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Fragment>
-          <Navbar />
-          <Alert />
-          <Switch>
-            <Route exact path='/' component={Landing} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/login' component={Login} />
-            <PrivateRoute exact path='/dashboard' component={Dashboard} />
-            <PrivateRoute exact path='/account' component={Account} />
-            <Route path="*" component={NoMatch} />
-          </Switch>
-        </Fragment>
+        <Navbar />
+        <Alert />
+        <Switch>
+          <Route exact path='/' component={Landing} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/login' component={Login} />
+          <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          <PrivateRoute exact path='/account' component={Account} />
+          <Route path="*" component={NoMatch} />
+        </Switch>
       </Router>
     </Provider>
   );

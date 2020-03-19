@@ -5,9 +5,6 @@ section
   text-align: center
   color: $dark
 
-  .container
-    @include is-narrow()
-
   &.hero  
     h1
       @include margin(bottom, 4)
@@ -22,17 +19,26 @@ section
     background-image: $primary-gradient
 
 .benefits-wrapper
-  display: flex
-  flex-flow: row nowrap
-  justify-content: space-between
+  figure
+    @include margin(bottom, 3)
 
-  figure 
-    &:not(:last-child)
-      padding-right: 2rem
+    max-width: 446px
+    margin-left: auto
+    margin-right: auto
 
     h3, p
       color: $light
-      text-align: left
-
+    
     h3
       @include margin(bottom, 1)
+
+  @include mq(medium)
+    display: flex
+    flex-flow: row nowrap
+    justify-content: space-between
+
+    figure 
+      text-align: left
+
+      &:not(:last-child)
+        padding-right: 2rem

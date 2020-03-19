@@ -101,6 +101,7 @@ $spacings: (1: $spacing-1, 2: $spacing-2, 3: $spacing-3, 4: $spacing-4, 5: $spac
 @import "./_inputs"
 @import "./_auth-routes" 
 @import "./landing"
+@import "./alerts"
 
 // Get Sassy
 html 
@@ -208,6 +209,9 @@ input[type="week"]
 
 // Layout
 
+.container
+  @include is-narrow()
+
 .my-1
   margin-top: $spacing-1
   margin-bottom: $spacing-1
@@ -269,3 +273,15 @@ input[type="week"]
   margin-left: $spacing-3
 .ml-4
   margin-left: $spacing-4
+
+.fade-in 
+  animation: 500ms ease-in-out both fade-in
+
+// Animations
+@keyframes fade-in
+  0% 
+    opacity: 0
+    transform: translatey(-120px)
+  100%
+    opacity: 1
+    transform: translatey(0px)

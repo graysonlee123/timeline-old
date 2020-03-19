@@ -35,16 +35,18 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
 
   return (
     <nav>
-      <span className="nav-left">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-        </ul>
-      </span>
-      <span className="nav-right">
-        {isAuthenticated ? authLinks : guestLinks}
-      </span>
+      <div className="container">
+        <span className="nav-left">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+          </ul>
+        </span>
+        <span className="nav-right">
+          {isAuthenticated ? authLinks : guestLinks}
+        </span>
+      </div>
     </nav>
   );
 };

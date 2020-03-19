@@ -8,15 +8,20 @@
 $header-fontStack: 'Montserrat', sans-serif
 $body-fontStack: 'Montserrat', sans-serif
 
-$light: #fff
+$light: #ffffff
+$dark: #333747
 
-$primary-gradient-1: #CB356B
-$primary-gradient-2: #BD3F32 
+$primary-gradient-1: #FF3366
+$primary-gradient-2: #FF5F58 
 $primary-gradient: linear-gradient(45deg, $primary-gradient-1, $primary-gradient-2)
 
 $dark-gradient-1: #1F222E
 $dark-gradient-2: #35394A
 $dark-gradient: linear-gradient(45deg, $dark-gradient-1, $dark-gradient-2)
+
+$light-gradient-1: #ffffff
+$light-gradient-2: #ffffff
+$light-gradient: linear-gradient(45deg, $light-gradient-1, $light-gradient-2)
 
 $dark-shadow: 0 1px 1px color.scale($dark-gradient-1, $alpha: -85%), 0 2px 2px color.scale($dark-gradient-1, $alpha: -85%), 0 4px 4px color.scale($dark-gradient-1, $alpha: -85%), 0 8px 8px color.scale($dark-gradient-1, $alpha: -85%), 0 16px 16px color.scale($dark-gradient-1, $alpha: -85%)
 
@@ -36,8 +41,11 @@ $spacing-4: 6rem
   font-size: $size
   font-weight: $weight
 
-@mixin faint($percent: -50%)
+@mixin faint-light($percent: -50%)
   color: color.scale($light, $alpha: $percent)
+
+@mixin faint-dark($percent: -50%)
+  color: color.scale($dark, $alpha: $percent)
 
 @mixin my($space)
   margin-top: $space
@@ -67,8 +75,10 @@ $spacing-4: 6rem
 // Get Sassy
 html 
   font-size: 10px
+  
 body
   @include bodyFont()
+  background: $primary-gradient
 
 html *
   box-sizing: border-box
@@ -88,6 +98,10 @@ a
 
 h1
   @include headerFonts(4rem)
+  color: $primary-gradient-1
+  background: $primary-gradient
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
 
 h2
   @include headerFonts(3rem)
@@ -104,8 +118,11 @@ h5
 h6
   @include headerFonts(1rem, 300)
 
-.faint
-  @include faint(-80%)
+.faint-dark
+  @include faint-dark()
+
+.faint-light
+  @include faint-light()
 
 .light
   color: $light
@@ -126,37 +143,41 @@ input[type="time"],
 input[type="url"],
 input[type="week"]
   @include bodyFont()
-  @include faint(-50%)
+  @include faint-dark(-20%)
   
   width: 100%
-  border-bottom: 1px solid $dark-gradient-1
+  border-bottom: 1px solid color.scale($dark-gradient-1, $alpha: -50%)
   margin-bottom: $spacing-1
   font-size: 1.4rem
   padding-top: $spacing-1
   padding-bottom: $spacing-1 
 
-.button
-  font-family: $body-fontStack
-  font-weight: 900
-  letter-spacing: 1px
-  font-size: 1.4rem
-  padding: 12px 24px
-  font-weight: bold
+  &::placeholder
+    color: color.scale($dark-gradient-1, $alpha: -75%)
+    transition: 300ms ease-in-out
 
-  border-radius: 100rem
-  color: $light
-  box-shadow: $dark-shadow
-  border: solid 3px transparent
-  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), $primary-gradient
-  background-origin: border-box
-  background-clip: content-box, border-box
-  box-shadow: 2px 1000px 1px $dark-gradient-1 inset
+  &:focus
+    &::placeholder
+      color: color.scale($dark-gradient-1, $alpha: -50%)
+
+.button
+  font:
+    family: $body-fontStack
+    weight: 700
+    size: 1.4rem
+  border:
+    style: solid
+    width: 4px
+    color: transparent
+    image: $primary-gradient
+    image-slice: 1
+  padding: 12px 24px
   transition: 300ms
   cursor: pointer
+  transition: 300ms
 
   &:hover
-    color: $dark-gradient-1
-    box-shadow: none
+    background-image: $primary-gradient
 
 // Layout
 

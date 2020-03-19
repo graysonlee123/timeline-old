@@ -9,7 +9,6 @@ nav {
 
 .auth-card-container {
   height: 100%;
-  background: linear-gradient(45deg, #CB356B, #BD3F32);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,25 +16,24 @@ nav {
 .auth-card-container form {
   width: 348px;
   padding: 8rem 6rem;
-  background: linear-gradient(45deg, #1F222E, #35394A);
+  background: linear-gradient(45deg, #ffffff, #ffffff);
   border-radius: 4px;
   box-shadow: 0 1px 1px rgba(31, 34, 46, 0.15), 0 2px 2px rgba(31, 34, 46, 0.15), 0 4px 4px rgba(31, 34, 46, 0.15), 0 8px 8px rgba(31, 34, 46, 0.15), 0 16px 16px rgba(31, 34, 46, 0.15);
 }
 .auth-card-container form a {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(51, 55, 71, 0.5);
 }
 .auth-card-container form a:hover {
-  color: #CB356B;
+  color: #FF3366;
 }
 .auth-card-container form input {
   margin-bottom: 1.2rem;
 }
 .auth-card-container form h1 {
   margin-bottom: 6rem;
-  color: #fff;
 }
 .auth-card-container form p {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(51, 55, 71, 0.5);
 }
 .auth-card-container form .submit-group {
   margin-top: 3.6rem;
@@ -64,7 +62,8 @@ html {
 body {
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
-  color: #fff;
+  color: #ffffff;
+  background: linear-gradient(45deg, #FF3366, #FF5F58);
 }
 
 html * {
@@ -81,13 +80,17 @@ a {
   text-decoration: underline;
 }
 a:hover {
-  color: #CB356B;
+  color: #FF3366;
 }
 
 h1 {
   font-family: "Montserrat", sans-serif;
   font-size: 4rem;
   font-weight: 700;
+  color: #FF3366;
+  background: linear-gradient(45deg, #FF3366, #FF5F58);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 h2 {
@@ -120,12 +123,16 @@ h6 {
   font-weight: 300;
 }
 
-.faint {
-  color: rgba(255, 255, 255, 0.2);
+.faint-dark {
+  color: rgba(51, 55, 71, 0.5);
+}
+
+.faint-light {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .light {
-  color: #fff;
+  color: #ffffff;
 }
 
 input[type=date],
@@ -144,37 +151,65 @@ input[type=url],
 input[type=week] {
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
-  color: #fff;
-  color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  color: rgba(51, 55, 71, 0.8);
   width: 100%;
-  border-bottom: 1px solid #1F222E;
+  border-bottom: 1px solid rgba(31, 34, 46, 0.5);
   margin-bottom: 1.2rem;
   font-size: 1.4rem;
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
 }
+input[type=date]::placeholder,
+input[type=datetime]::placeholder,
+input[type=datetime-local]::placeholder,
+input[type=email]::placeholder,
+input[type=month]::placeholder,
+input[type=number]::placeholder,
+input[type=password]::placeholder,
+input[type=range]::placeholder,
+input[type=search]::placeholder,
+input[type=tel]::placeholder,
+input[type=text]::placeholder,
+input[type=time]::placeholder,
+input[type=url]::placeholder,
+input[type=week]::placeholder {
+  color: rgba(31, 34, 46, 0.25);
+  transition: 300ms ease-in-out;
+}
+input[type=date]:focus::placeholder,
+input[type=datetime]:focus::placeholder,
+input[type=datetime-local]:focus::placeholder,
+input[type=email]:focus::placeholder,
+input[type=month]:focus::placeholder,
+input[type=number]:focus::placeholder,
+input[type=password]:focus::placeholder,
+input[type=range]:focus::placeholder,
+input[type=search]:focus::placeholder,
+input[type=tel]:focus::placeholder,
+input[type=text]:focus::placeholder,
+input[type=time]:focus::placeholder,
+input[type=url]:focus::placeholder,
+input[type=week]:focus::placeholder {
+  color: rgba(31, 34, 46, 0.5);
+}
 
 .button {
   font-family: "Montserrat", sans-serif;
-  font-weight: 900;
-  letter-spacing: 1px;
+  font-weight: 700;
   font-size: 1.4rem;
+  border-style: solid;
+  border-width: 4px;
+  border-color: transparent;
+  border-image: linear-gradient(45deg, #FF3366, #FF5F58);
+  border-image-slice: 1;
   padding: 12px 24px;
-  font-weight: bold;
-  border-radius: 100rem;
-  color: #fff;
-  box-shadow: 0 1px 1px rgba(31, 34, 46, 0.15), 0 2px 2px rgba(31, 34, 46, 0.15), 0 4px 4px rgba(31, 34, 46, 0.15), 0 8px 8px rgba(31, 34, 46, 0.15), 0 16px 16px rgba(31, 34, 46, 0.15);
-  border: solid 3px transparent;
-  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(45deg, #CB356B, #BD3F32);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  box-shadow: 2px 1000px 1px #1F222E inset;
   transition: 300ms;
   cursor: pointer;
+  transition: 300ms;
 }
 .button:hover {
-  color: #1F222E;
-  box-shadow: none;
+  background-image: linear-gradient(45deg, #FF3366, #FF5F58);
 }
 
 .my-1 {

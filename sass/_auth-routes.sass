@@ -2,7 +2,6 @@
   
 .auth-card-container
   height: 100%
-  background: $primary-gradient
   display: flex
   align-items: center
   justify-content: center
@@ -10,12 +9,12 @@
   form
     width: 348px
     padding: 8rem 6rem
-    background: $dark-gradient
+    background: $light-gradient
     border-radius: 4px
     box-shadow: $dark-shadow
 
     a
-      @include faint(-80%)
+      @include faint-dark()
 
       &:hover
         color: $primary-gradient-1
@@ -25,10 +24,9 @@
 
     h1
       @include mb($spacing-4)
-      color: $light
 
     p
-      @include faint(-80%)
+      @include faint-dark()
 
     .submit-group
       @include my($spacing-3)

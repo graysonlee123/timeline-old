@@ -5,6 +5,7 @@
   display: flex
   align-items: center
   justify-content: center
+  background-image: $primary-gradient
 
   form
     width: 348px
@@ -20,16 +21,19 @@
         color: $primary-gradient-1
 
     input
-      @include mb($spacing-1)
+      @include margin(bottom, 1)
 
     h1
-      @include mb($spacing-4)
+      @include margin(bottom, 4)
 
     p
       @include faint-dark()
+      
+      font-size: 1rem
 
     .submit-group
-      @include my($spacing-3)
+      @include margin(bottom, 3)
+      @include margin(top, 3)
 
       display: flex
       flex-flow: row nowrap

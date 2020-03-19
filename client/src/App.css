@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap");
 nav {
+  padding: 2.4rem;
   background: linear-gradient(45deg, #1F222E, #35394A);
-  padding: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -12,6 +12,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: linear-gradient(45deg, #FF3366, #FF5F58);
 }
 .auth-card-container form {
   width: 348px;
@@ -34,10 +35,11 @@ nav {
 }
 .auth-card-container form p {
   color: rgba(51, 55, 71, 0.5);
+  font-size: 1rem;
 }
 .auth-card-container form .submit-group {
-  margin-top: 3.6rem;
   margin-bottom: 3.6rem;
+  margin-top: 3.6rem;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -55,15 +57,52 @@ nav {
   width: 48%;
 }
 
+section {
+  padding: 12rem 4rem;
+  text-align: center;
+  color: #333747;
+}
+section .container {
+  max-width: 972px;
+  margin-left: auto;
+  margin-right: auto;
+}
+section.hero h1 {
+  margin-bottom: 6rem;
+}
+section.hero p {
+  margin-bottom: 10rem;
+}
+section.hero a.button {
+  display: inline-block;
+}
+section.is-bright {
+  background-image: linear-gradient(45deg, #FF3366, #FF5F58);
+}
+
+.benefits-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+.benefits-wrapper figure:not(:last-child) {
+  padding-right: 2rem;
+}
+.benefits-wrapper figure h3, .benefits-wrapper figure p {
+  color: #ffffff;
+  text-align: left;
+}
+.benefits-wrapper figure h3 {
+  margin-bottom: 1.2rem;
+}
+
 html {
   font-size: 10px;
 }
 
 body {
   font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  color: #ffffff;
-  background: linear-gradient(45deg, #FF3366, #FF5F58);
+  color: #333747;
 }
 
 html * {
@@ -72,6 +111,35 @@ html * {
 
 html, body, #root {
   height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+  color: #FF3366;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2.4rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.8rem;
+}
+
+h6 {
+  font-size: 1.6rem;
 }
 
 a {
@@ -83,56 +151,10 @@ a:hover {
   color: #FF3366;
 }
 
-h1 {
+p {
   font-family: "Montserrat", sans-serif;
-  font-size: 4rem;
-  font-weight: 700;
-  color: #FF3366;
-  background: linear-gradient(45deg, #FF3366, #FF5F58);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-h2 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 3rem;
-  font-weight: 700;
-}
-
-h3 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 2.4rem;
-  font-weight: 700;
-}
-
-h4 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-h5 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.6rem;
-  font-weight: 300;
-}
-
-h6 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
-}
-
-.faint-dark {
-  color: rgba(51, 55, 71, 0.5);
-}
-
-.faint-light {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.light {
-  color: #ffffff;
+  font-size: 1.4rem;
+  line-height: 1.6;
 }
 
 input[type=date],
@@ -149,10 +171,8 @@ input[type=text],
 input[type=time],
 input[type=url],
 input[type=week] {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  color: #ffffff;
   color: rgba(51, 55, 71, 0.8);
+  font-family: "Montserrat", sans-serif;
   width: 100%;
   border-bottom: 1px solid rgba(31, 34, 46, 0.5);
   margin-bottom: 1.2rem;
@@ -174,7 +194,7 @@ input[type=text]::placeholder,
 input[type=time]::placeholder,
 input[type=url]::placeholder,
 input[type=week]::placeholder {
-  color: rgba(31, 34, 46, 0.25);
+  color: rgba(31, 34, 46, 0.35);
   transition: 300ms ease-in-out;
 }
 input[type=date]:focus::placeholder,
@@ -195,20 +215,23 @@ input[type=week]:focus::placeholder {
 }
 
 .button {
+  color: #333747;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 1.4rem;
+  text-decoration: none;
   border-style: solid;
   border-width: 4px;
   border-color: transparent;
   border-image: linear-gradient(45deg, #FF3366, #FF5F58);
   border-image-slice: 1;
-  padding: 12px 24px;
-  transition: 300ms;
-  cursor: pointer;
-  transition: 300ms;
+  border-padding: 12px 24px;
+  border-transition: 300ms;
+  border-cursor: pointer;
+  border-transition: 300ms;
 }
 .button:hover {
+  color: #333747;
   background-image: linear-gradient(45deg, #FF3366, #FF5F58);
 }
 

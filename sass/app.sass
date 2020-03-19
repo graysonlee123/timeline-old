@@ -5,8 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap')
   
 // Variables
-$header-fontStack: 'Montserrat', sans-serif
-$body-fontStack: 'Montserrat', sans-serif
+$header-font: 'Montserrat', sans-serif
+$body-font: 'Montserrat', sans-serif
 
 $light: #ffffff
 $dark: #333747
@@ -29,56 +29,70 @@ $spacing-1: 1.2rem
 $spacing-2: 2.4rem
 $spacing-3: 3.6rem
 $spacing-4: 6rem
+$spacing-5: 10rem
+
+$max-width: 972px
 
 // Mixins
-@mixin bodyFont()
-  font-family: $body-fontStack
-  font-size: 1rem
-  color: $light
-
-@mixin headerFonts($size, $weight: 700)
-  font-family: $header-fontStack
-  font-size: $size
-  font-weight: $weight
-
 @mixin faint-light($percent: -50%)
   color: color.scale($light, $alpha: $percent)
 
 @mixin faint-dark($percent: -50%)
   color: color.scale($dark, $alpha: $percent)
 
-@mixin my($space)
-  margin-top: $space
-  margin-bottom: $space
+/// Adds margin or padding
+/// 
+/// @param {string} $direction
+///   The direction to add margin or padding.
+///   top, right, bottom, left, all, x, y
+/// @param {int} $spacing
+///   The amout of spacing to add
+///   1, 2, 3, 4, 5
+$spacings: (1: $spacing-1, 2: $spacing-2, 3: $spacing-3, 4: $spacing-4, 5: $spacing-5)
 
-@mixin mx($space)
-  margin-right: $space
-  margin-left: $space
+@mixin margin($direction, $spacing) 
+  @if $direction == "all"
+    margin: map-get($spacings, $spacing)
+  @else if $direction == "x"
+    margin-right: map-get($spacings, $spacing)
+    margin-left: map-get($spacings, $spacing)
+  @else if $direction == "y"
+    margin-top: map-get($spacings, $spacing)
+    margin-bottom: map-get($spacings, $spacing)
+  @else 
+    margin-#{$direction}: map-get($spacings, $spacing)
 
-@mixin mt($space)
-  margin-top: $space
+@mixin padding($direction, $spacing) 
+  @if $direction == "all"
+    padding: map-get($spacings, $spacing)
+  @else if $direction == "x"
+    padding-right: map-get($spacings, $spacing)
+    padding-left: map-get($spacings, $spacing)
+  @else if $direction == "y"
+    padding-top: map-get($spacings, $spacing)
+    padding-bottom: map-get($spacings, $spacing)
+  @else 
+    padding-#{$direction}: map-get($spacings, $spacing)
 
-@mixin mr($space)
-  margin-right: $space
 
-@mixin mb($space)
-  margin-bottom: $space
-
-@mixin ml($space)
-  margin-left: $space
+@mixin is-narrow()
+  max-width: $max-width
+  margin-left: auto
+  margin-right: auto
 
 // Import modules
 @import "./_navbar"
 @import "./_inputs"
-@import"./_auth-routes" 
+@import "./_auth-routes" 
+@import "./landing"
 
 // Get Sassy
 html 
   font-size: 10px
   
 body
-  @include bodyFont()
-  background: $primary-gradient
+  font-family: $body-font
+  color: $dark
 
 html *
   box-sizing: border-box
@@ -87,6 +101,27 @@ html, body, #root
   height: 100%
 
 // Typography
+h1, h2, h3, h4, h5, h6
+  font-family: $header-font
+  color: $primary-gradient-1
+
+h1
+  font-size: 4rem
+
+h2
+  font-size: 3rem
+
+h3
+  font-size: 2.4rem
+
+h4
+  font-size: 2.0rem
+  
+h5
+  font-size: 1.8rem
+  
+h6
+  font-size: 1.6rem
 
 a
   color: inherit
@@ -96,36 +131,11 @@ a
   &:hover
     color: $primary-gradient-1
 
-h1
-  @include headerFonts(4rem)
-  color: $primary-gradient-1
-  background: $primary-gradient
-  -webkit-background-clip: text
-  -webkit-text-fill-color: transparent
-
-h2
-  @include headerFonts(3rem)
-
-h3
-  @include headerFonts(2.4rem)
-
-h4
-  @include headerFonts(2rem)
+p
+  font-family: $body-font
   
-h5
-  @include headerFonts(1.6rem, 300)
-  
-h6
-  @include headerFonts(1rem, 300)
-
-.faint-dark
-  @include faint-dark()
-
-.faint-light
-  @include faint-light()
-
-.light
-  color: $light
+  font-size: 1.4rem
+  line-height: 1.6
 
 // Inputs
 input[type="date"],
@@ -142,18 +152,18 @@ input[type="text"],
 input[type="time"],
 input[type="url"],
 input[type="week"]
-  @include bodyFont()
   @include faint-dark(-20%)
   
+  font-family: $body-font
   width: 100%
   border-bottom: 1px solid color.scale($dark-gradient-1, $alpha: -50%)
   margin-bottom: $spacing-1
   font-size: 1.4rem
   padding-top: $spacing-1
-  padding-bottom: $spacing-1 
+  padding-bottom: $spacing-1
 
   &::placeholder
-    color: color.scale($dark-gradient-1, $alpha: -75%)
+    color: color.scale($dark-gradient-1, $alpha: -65%)
     transition: 300ms ease-in-out
 
   &:focus
@@ -161,22 +171,25 @@ input[type="week"]
       color: color.scale($dark-gradient-1, $alpha: -50%)
 
 .button
+  color: $dark
   font:
-    family: $body-fontStack
+    family: $body-font
     weight: 700
     size: 1.4rem
-  border:
+  text-decoration: none
+  border: 
     style: solid
     width: 4px
     color: transparent
     image: $primary-gradient
     image-slice: 1
-  padding: 12px 24px
-  transition: 300ms
-  cursor: pointer
-  transition: 300ms
+    padding: 12px 24px
+    transition: 300ms
+    cursor: pointer
+    transition: 300ms
 
   &:hover
+    color: $dark
     background-image: $primary-gradient
 
 // Layout

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -38,10 +38,10 @@ const Register = ({ setAlert, register, auth: { isAuthenticated, user } }) => {
   }
 
   return (
-    <Fragment>
-      <h1>Sign Up</h1>
+    <div className="auth-card-container register">
       <form onSubmit={e => onSubmit(e)}>
-        <div>
+        <h1>Sign Up</h1>
+        <div className="dual-field">
           <input
             type='text'
             placeholder='First name'
@@ -49,8 +49,6 @@ const Register = ({ setAlert, register, auth: { isAuthenticated, user } }) => {
             value={first_name}
             onChange={e => onChange(e)}
           />
-        </div>
-        <div>
           <input
             type='text'
             placeholder='Last name'
@@ -95,12 +93,14 @@ const Register = ({ setAlert, register, auth: { isAuthenticated, user } }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <input type='submit' value='Register' />
+        <div className="submit-group">
+          <input type='submit' value='Register' className="button" />
+        </div>
+        <p>
+          Already have an account? <Link to='/login'>Sign In</Link>
+        </p>
       </form>
-      <p>
-        Already have an account? <Link to='/login'>Sign In</Link>
-      </p>
-    </Fragment>
+    </div>
   );
 };
 

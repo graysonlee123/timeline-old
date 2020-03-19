@@ -1,0 +1,50 @@
+@use "sass:color"
+  
+.auth-card-container
+  height: 100%
+  background: $primary-gradient
+  display: flex
+  align-items: center
+  justify-content: center
+
+  form
+    width: 348px
+    padding: 8rem 6rem
+    background: $dark-gradient
+    border-radius: 4px
+    box-shadow: $dark-shadow
+
+    a
+      @include faint(-80%)
+
+      &:hover
+        color: $primary-gradient-1
+
+    input
+      @include mb($spacing-1)
+
+    h1
+      @include mb($spacing-4)
+      color: $light
+
+    p
+      @include faint(-80%)
+
+    .submit-group
+      @include my($spacing-3)
+
+      display: flex
+      flex-flow: row nowrap
+      align-items: center
+      justify-content: space-around
+
+.auth-card-container.register
+  form
+    width: 464px
+
+    div.dual-field 
+      display: flex
+      justify-content: space-between
+
+      input
+        width: 48%

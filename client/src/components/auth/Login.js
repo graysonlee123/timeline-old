@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -32,12 +32,9 @@ const Login = ({ auth: { isAuthenticated, user }, login }) => {
   }
 
   return (
-    <Fragment>
-      <h1>Sign In</h1>
-      <p>
-        <i className='fas fa-user' /> Log in to your timeline
-      </p>
+    <div className="auth-card-container">
       <form onSubmit={e => onSubmit(e)}>
+        <h1>Sign In</h1>
         <div>
           <input
             type='email'
@@ -56,12 +53,17 @@ const Login = ({ auth: { isAuthenticated, user }, login }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <input type='submit' value='Login' />
+        <div className="submit-group">
+          <input type='submit' value='Login' className="button button-gradient" />
+          <Link to="/">Forgot Password?</Link>
+        </div>
+        <div>
+          <p>
+            Need to register? <Link to='/register'>Sign Up</Link>
+          </p>
+        </div>
       </form>
-      <p>
-        Need to register? <Link to='/register'>Sign Up</Link>
-      </p>
-    </Fragment>
+    </div>
   );
 };
 

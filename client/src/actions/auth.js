@@ -42,7 +42,7 @@ export const register = ({ first_name, last_name, email, avatar, password }) => 
       "Content-Type": "application/json"
     }
   };
-  const body = JSON.stringify({ first_name, last_name, email, avatar, password });
+  const body = JSON.stringify({ first_name, last_name, email, avatar, password, gender: 'none' });
 
   try {
     const res = await axios.post("/api/user", body, config);

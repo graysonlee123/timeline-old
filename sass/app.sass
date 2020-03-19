@@ -1,11 +1,223 @@
-$alert-width: 320px
+// Use
+@use "sass:color"
+
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap')
   
-.alert
-  position: fixed
-  top: 100px
-  left: 50%
-  width: $alert-width
-  margin-left: ($alert-width / 2) * -1
-  padding: 1rem 3rem
-  border-radius: 24px
-  background-color: cadetblue
+// Variables
+$header-fontStack: 'Montserrat', sans-serif
+$body-fontStack: 'Montserrat', sans-serif
+
+$light: #fff
+
+$primary-gradient-1: #CB356B
+$primary-gradient-2: #BD3F32 
+$primary-gradient: linear-gradient(45deg, $primary-gradient-1, $primary-gradient-2)
+
+$dark-gradient-1: #1F222E
+$dark-gradient-2: #35394A
+$dark-gradient: linear-gradient(45deg, $dark-gradient-1, $dark-gradient-2)
+
+$dark-shadow: 0 1px 1px color.scale($dark-gradient-1, $alpha: -85%), 0 2px 2px color.scale($dark-gradient-1, $alpha: -85%), 0 4px 4px color.scale($dark-gradient-1, $alpha: -85%), 0 8px 8px color.scale($dark-gradient-1, $alpha: -85%), 0 16px 16px color.scale($dark-gradient-1, $alpha: -85%)
+
+$spacing-1: 1.2rem
+$spacing-2: 2.4rem
+$spacing-3: 3.6rem
+$spacing-4: 6rem
+
+// Mixins
+@mixin bodyFont()
+  font-family: $body-fontStack
+  font-size: 1rem
+  color: $light
+
+@mixin headerFonts($size, $weight: 700)
+  font-family: $header-fontStack
+  font-size: $size
+  font-weight: $weight
+
+@mixin faint($percent: -50%)
+  color: color.scale($light, $alpha: $percent)
+
+@mixin my($space)
+  margin-top: $space
+  margin-bottom: $space
+
+@mixin mx($space)
+  margin-right: $space
+  margin-left: $space
+
+@mixin mt($space)
+  margin-top: $space
+
+@mixin mr($space)
+  margin-right: $space
+
+@mixin mb($space)
+  margin-bottom: $space
+
+@mixin ml($space)
+  margin-left: $space
+
+// Import modules
+@import "./_navbar"
+@import "./_inputs"
+@import"./_auth-routes" 
+
+// Get Sassy
+html 
+  font-size: 10px
+body
+  @include bodyFont()
+
+html *
+  box-sizing: border-box
+  
+html, body, #root
+  height: 100%
+
+// Typography
+
+a
+  color: inherit
+  font-size: inherit
+  text-decoration: underline
+
+  &:hover
+    color: $primary-gradient-1
+
+h1
+  @include headerFonts(4rem)
+
+h2
+  @include headerFonts(3rem)
+
+h3
+  @include headerFonts(2.4rem)
+
+h4
+  @include headerFonts(2rem)
+  
+h5
+  @include headerFonts(1.6rem, 300)
+  
+h6
+  @include headerFonts(1rem, 300)
+
+.faint
+  @include faint(-80%)
+
+.light
+  color: $light
+
+// Inputs
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="range"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"]
+  @include bodyFont()
+  @include faint(-50%)
+  
+  width: 100%
+  border-bottom: 1px solid $dark-gradient-1
+  margin-bottom: $spacing-1
+  font-size: 1.4rem
+  padding-top: $spacing-1
+  padding-bottom: $spacing-1 
+
+.button
+  font-family: $body-fontStack
+  font-weight: 900
+  letter-spacing: 1px
+  font-size: 1.4rem
+  padding: 12px 24px
+  font-weight: bold
+
+  border-radius: 100rem
+  color: $light
+  box-shadow: $dark-shadow
+  border: solid 3px transparent
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), $primary-gradient
+  background-origin: border-box
+  background-clip: content-box, border-box
+  box-shadow: 2px 1000px 1px $dark-gradient-1 inset
+  transition: 300ms
+  cursor: pointer
+
+  &:hover
+    color: $dark-gradient-1
+    box-shadow: none
+
+// Layout
+
+.my-1
+  margin-top: $spacing-1
+  margin-bottom: $spacing-1
+.my-2
+  margin-top: $spacing-2
+  margin-bottom: $spacing-2
+.my-3
+  margin-top: $spacing-3
+  margin-bottom: $spacing-3
+.my-4
+  margin-top: $spacing-4
+  margin-bottom: $spacing-4
+
+.mx-1
+  margin-right: $spacing-1
+  margin-left: $spacing-1
+.mx-2
+  margin-right: $spacing-2
+  margin-left: $spacing-2
+.mx-3
+  margin-right: $spacing-3
+  margin-left: $spacing-3
+.mx-4
+  margin-right: $spacing-4
+  margin-left: $spacing-4
+
+.mt-1
+  margin-top: $spacing-1
+.mt-2
+  margin-top: $spacing-2
+.mt-3
+  margin-top: $spacing-3
+.mt-4
+  margin-top: $spacing-4
+
+.mr-1
+  margin-right: $spacing-1
+.mr-2
+  margin-right: $spacing-2
+.mr-3
+  margin-right: 3em
+.mr-4
+  margin-right: $spacing-4
+
+.mb-1
+  margin-bottom: $spacing-1
+.mb-2
+  margin-bottom: $spacing-2
+.mb-3
+  margin-bottom: $spacing-3
+.mb-4
+  margin-bottom: $spacing-4
+
+.ml-1
+  margin-left: $spacing-1
+.ml-2
+  margin-left: $spacing-2
+.ml-3
+  margin-left: $spacing-3
+.ml-4
+  margin-left: $spacing-4

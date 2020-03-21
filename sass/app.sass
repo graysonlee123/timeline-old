@@ -102,6 +102,7 @@ $spacings: (1: $spacing-1, 2: $spacing-2, 3: $spacing-3, 4: $spacing-4, 5: $spac
 @import "./_auth-routes" 
 @import "./landing"
 @import "./alerts"
+@import "./_footer"
 
 // Get Sassy
 html 
@@ -208,6 +209,20 @@ input[type="week"]
     background-image: $primary-gradient
 
 // Layout
+
+#root
+  display: grid
+  grid-template-rows: 80px auto 100px
+  grid-template-areas: "navbar" "main" "footer"
+
+nav
+  grid-area: navbar
+
+main
+  grid-area: main
+
+footer
+  grid-area: footer
 
 .container
   @include is-narrow()

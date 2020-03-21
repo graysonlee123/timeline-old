@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const Dashboard = ({ auth }) => {
   return (
-    <div>
+    <div className="container">
       <h1>Dashboard</h1>
       <div>Your Name: {auth.user.first_name}</div>
     </div>

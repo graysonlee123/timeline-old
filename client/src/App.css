@@ -5,6 +5,7 @@ nav {
   color: #FF3366;
 }
 nav .container {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -126,10 +127,12 @@ section.is-bright {
 }
 
 .benefits-wrapper figure {
-  margin-bottom: 3.6rem;
   max-width: 446px;
   margin-left: auto;
   margin-right: auto;
+}
+.benefits-wrapper figure:not(:last-child) {
+  margin-bottom: 10rem;
 }
 .benefits-wrapper figure h3, .benefits-wrapper figure p {
   color: #ffffff;
@@ -148,6 +151,7 @@ section.is-bright {
   }
   .benefits-wrapper figure:not(:last-child) {
     padding-right: 2rem;
+    margin-bottom: unset;
   }
 }
 
@@ -185,6 +189,12 @@ section.is-bright {
   position: absolute;
   right: 20px;
   top: 20px;
+}
+
+footer {
+  padding: 2.4rem;
+  background-image: linear-gradient(45deg, #1F222E, #35394A);
+  color: #ffffff;
 }
 
 html {
@@ -323,6 +333,24 @@ input[type=week]:focus::placeholder {
 .button:hover {
   color: #333747;
   background-image: linear-gradient(45deg, #FF3366, #FF5F58);
+}
+
+#root {
+  display: grid;
+  grid-template-rows: 80px auto 100px;
+  grid-template-areas: "navbar" "main" "footer";
+}
+
+nav {
+  grid-area: navbar;
+}
+
+main {
+  grid-area: main;
+}
+
+footer {
+  grid-area: footer;
 }
 
 .container {

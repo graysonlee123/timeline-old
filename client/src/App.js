@@ -14,6 +14,7 @@ import PrivateRoute from './components/auth/PrivateRoute';
 
 // Components
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Landing from './components/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
@@ -39,14 +40,17 @@ const App = () => {
       <Router>
         <Navbar />
         <Alert />
-        <Switch>
-          <Route exact path='/' component={Landing} />
-          <Route exact path='/register' component={Register} />
-          <Route exact path='/login' component={Login} />
-          <PrivateRoute exact path='/dashboard' component={Dashboard} />
-          <PrivateRoute exact path='/account' component={Account} />
-          <Route path="*" component={NoMatch} />
-        </Switch>
+        <main>
+          <Switch>
+            <Route exact path='/' component={Landing} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/login' component={Login} />
+            <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            <PrivateRoute exact path='/account' component={Account} />
+            <Route path='*' component={NoMatch} />
+          </Switch>
+        </main>
+        <Footer />
       </Router>
     </Provider>
   );

@@ -20,11 +20,12 @@ section
 
 .benefits-wrapper
   figure
-    @include margin(bottom, 3)
-
     max-width: 446px
     margin-left: auto
     margin-right: auto
+    
+    &:not(:last-child)
+      @include margin(bottom, 5)
 
     h3, p
       color: $light
@@ -42,3 +43,4 @@ section
 
       &:not(:last-child)
         padding-right: 2rem
+        margin-bottom: unset

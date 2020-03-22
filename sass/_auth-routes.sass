@@ -1,14 +1,10 @@
 .auth-card-container
-  width: 100%
-  height: 100%
   background-image: $primary-gradient
 
   form
     @include padding(x, 2)
     @include padding(y, 3)
 
-    width: 100%
-    height: 100%
     background: $light-gradient
 
     a
@@ -71,4 +67,7 @@ div.dual-field
       grid-template-areas: ". . ." ". form ." ". . ."
     
       form
+        @include margin(y, 5)
+
         grid-area: form
+        height: auto

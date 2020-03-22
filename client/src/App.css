@@ -25,8 +25,6 @@ nav span ul li + li {
 }
 
 .auth-card-container {
-  width: 100%;
-  height: 100%;
   background-image: linear-gradient(45deg, #FF3366, #FF5F58);
 }
 .auth-card-container form {
@@ -34,8 +32,6 @@ nav span ul li + li {
   padding-left: 2.4rem;
   padding-top: 3.6rem;
   padding-bottom: 3.6rem;
-  width: 100%;
-  height: 100%;
   background: linear-gradient(45deg, #ffffff, #ffffff);
 }
 .auth-card-container form a {
@@ -104,7 +100,10 @@ div.dual-field input {
       grid-template-areas: ". . ." ". form ." ". . .";
     }
     .auth-card-container form {
+      margin-top: 10rem;
+      margin-bottom: 10rem;
       grid-area: form;
+      height: auto;
     }
   }
 }
@@ -208,10 +207,6 @@ body {
 
 html * {
   box-sizing: border-box;
-}
-
-html, body, #root {
-  height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -339,6 +334,7 @@ input[type=week]:focus::placeholder {
   display: grid;
   grid-template-rows: 80px auto 100px;
   grid-template-areas: "navbar" "main" "footer";
+  min-height: 100vh;
 }
 
 nav {

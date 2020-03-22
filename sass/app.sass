@@ -1,5 +1,4 @@
-// Use
-@use "sass:color"
+@use 'sass:color'
 
 // Import fonts
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap')
@@ -114,9 +113,6 @@ body
 
 html *
   box-sizing: border-box
-  
-html, body, #root
-  height: 100%
 
 // Typography
 h1, h2, h3, h4, h5, h6
@@ -214,6 +210,7 @@ input[type="week"]
   display: grid
   grid-template-rows: 80px auto 100px
   grid-template-areas: "navbar" "main" "footer"
+  min-height: 100vh
 
 nav
   grid-area: navbar

@@ -196,6 +196,59 @@ footer {
   color: #ffffff;
 }
 
+.dashboard-menu {
+  max-width: 972px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2.4rem;
+  padding-bottom: 2.4rem;
+}
+.dashboard-menu .tabs {
+  margin-right: 2.4rem;
+  margin-left: 2.4rem;
+}
+.dashboard-menu .tabs li {
+  padding: 1.2rem;
+  display: inline-block;
+  font-weight: bold;
+}
+.dashboard-menu .tabs li.active {
+  color: #ffffff;
+  background-image: linear-gradient(45deg, #FF3366, #FF5F58);
+}
+.dashboard-menu .tabs li:not(:last-child) {
+  margin-right: 1.2rem;
+}
+
+.dashboard-main {
+  max-width: 972px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 2.4rem;
+  padding-left: 2.4rem;
+}
+
+.dashboard-main form h2 {
+  margin-bottom: 2.4rem;
+}
+.dashboard-main form .input-group {
+  margin-bottom: 1.2rem;
+}
+.dashboard-main form input[type=submit] {
+  margin-top: 2.4rem;
+  margin-bottom: 6rem;
+  display: inline-block;
+  padding: 1rem 2rem;
+  border: 4px solid #FF3366;
+  color: #1F222E;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.dashboard-main form select {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
 html {
   font-size: 10px;
 }
@@ -308,6 +361,18 @@ input[type=time]:focus::placeholder,
 input[type=url]:focus::placeholder,
 input[type=week]:focus::placeholder {
   color: rgba(31, 34, 46, 0.5);
+}
+
+label {
+  font-family: "Montserrat", sans-serif;
+  color: rgba(31, 34, 46, 0.3);
+}
+
+select {
+  font-family: "Montserrat", sans-serif;
+  display: block;
+  padding: 1rem;
+  border: 1px solid rgba(31, 34, 46, 0.5);
 }
 
 .button {

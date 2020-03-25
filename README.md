@@ -23,6 +23,7 @@ Timeline for keeping track of life
 - [moment](https://www.npmjs.com/package/moment): a lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates. 
 - [react-moment](https://www.npmjs.com/package/react-moment): React component for the moment date library
 - [uuid](https://www.npmjs.com/package/uuid): for creating of UUIDs
+- [classnames](https://www.npmjs.com/package/classnames): for logic class names
 
 ## Notes
 

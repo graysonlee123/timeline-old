@@ -103,9 +103,14 @@ $spacings: (1: $spacing-1, 2: $spacing-2, 3: $spacing-3, 4: $spacing-4, 5: $spac
   padding: 1rem 2rem
   border: 4px solid $primary-gradient-1
   color: $dark-gradient-1
+  cursor: pointer
   font:
     weight: 700
     size: 1.4rem
+
+  &:hover
+    background-image: $primary-gradient
+    color: $light
 
 // Import modules
 @import "_navbar"

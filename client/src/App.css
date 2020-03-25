@@ -211,6 +211,7 @@ footer {
   padding: 1.2rem;
   display: inline-block;
   font-weight: bold;
+  cursor: pointer;
 }
 .dashboard-menu .tabs li.active {
   color: #ffffff;
@@ -241,8 +242,13 @@ footer {
   padding: 1rem 2rem;
   border: 4px solid #FF3366;
   color: #1F222E;
+  cursor: pointer;
   font-weight: 700;
   font-size: 1.4rem;
+}
+.dashboard-main form input[type=submit]:hover {
+  background-image: linear-gradient(45deg, #FF3366, #FF5F58);
+  color: #ffffff;
 }
 .dashboard-main form select {
   margin-top: 1.2rem;

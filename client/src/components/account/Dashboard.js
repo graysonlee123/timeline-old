@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import Account from "./Account";
 import classNames from "classnames";
 
-const Dashboard = ({ auth }) => {
+const Dashboard = ({ auth, location }) => {
   const [activeTab, setActiveTab] = useState({
-    activeTab: "dashboard"
+    activeTab: 'dashboard'
   });
 
   const changeTab = newTab => {
@@ -15,9 +15,7 @@ const Dashboard = ({ auth }) => {
 
   const dashboardTab = (
     <Fragment>
-      <div>
-        Dashboard
-      </div>
+      <div>Dashboard</div>
     </Fragment>
   );
 
@@ -50,9 +48,14 @@ const Dashboard = ({ auth }) => {
           >
             Dashboard
           </li>
-          <li onClick={() => changeTab("account")} className={classNames({
+          <li
+            onClick={() => changeTab("account")}
+            className={classNames({
               active: activeTab.activeTab === "account"
-            })}>Account</li>
+            })}
+          >
+            Account
+          </li>
         </ul>
       </div>
       <div className="dashboard-main">{renderTab()}</div>
@@ -61,11 +64,10 @@ const Dashboard = ({ auth }) => {
 };
 
 Dashboard.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  tab: PropTypes.string
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
+const mapStateToProps = state => ({ auth: state.auth });
 
 export default connect(mapStateToProps)(Dashboard);

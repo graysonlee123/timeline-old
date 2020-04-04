@@ -1,40 +1,57 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './Reset.css';
+import './App.css';
+
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
+
+// Routes
+import PrivateRoute from './components/auth/PrivateRoute';
 
 // Components
-import Navigation from './components/Navigation';
-import Routes from './components/Routing/Routes';
-import Landing from './components/Landing/Landing';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Landing from './components/Landing';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
+import Alert from './components/Alert';
+import Dashboard from './components/account/Dashboard';
+import NoMatch from './components/NoMatch';
 
-// Redux functions
-import {setSession, logOut} from './actions/action'
+// * We want to check if the user already has a token every time App is loaded
+// * Basically whenever the user refreshes the page
 
-const App = ({setSession, authenticated, user, events, logOut}) => {
-  return (
-    <div className='app'>
-      <Navigation authenticated={authenticated} logOut={logOut} />
-      <Switch>
-        <Route exact path='/' component={Landing}/>
-        <Routes setSession={setSession} authenticated={authenticated} user={user} events={events}/>
-      </Switch>
-    </div>
-  );
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
 }
 
-// State here refers to Redux State
-const mapStateToProps = state => ({
-  authenticated: state.session.authenticated,
-  user: state.session.user,
-  events: state.session.events
-})
+const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
 
-const mapDispatchToProps = dispatch => ({
-  setSession: data => dispatch(setSession(data)),
-  logOut: () => dispatch(logOut())
-})
+  return (
+    <Provider store={store}>
+      <Router>
+        <Navbar />
+        <Alert />
+        <main>
+          <Switch>
+            <Route exact path='/' component={Landing} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/login' component={Login} />
+            <PrivateRoute exact path='/dashboard' component={Dashboard} />
+            <Route path='*' component={NoMatch} />
+          </Switch>
+        </main>
+        <Footer />
+      </Router>
+    </Provider>
+  );
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
+export default App;

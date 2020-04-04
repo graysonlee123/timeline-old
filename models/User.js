@@ -1,13 +1,35 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-// Create event schema
-const UserSchema = new Schema({
-  googleId: String,
-  username: String
+const UserSchema = new mongoose.Schema({
+  first_name: {
+    type: String,
+    required: true
+  },
+  last_name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    requird: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
+  },
+  avatar: {
+    type: String,
+    default: "http://localhost:3000/default-avatar.png"
+  },
+  gender: {
+    type: String,
+    default: 'none'
+  }
 });
 
-// Create model
-const User = mongoose.model('user', UserSchema);
-
-module.exports = User;
+module.exports = User = mongoose.model('user', UserSchema);

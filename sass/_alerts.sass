@@ -1,0 +1,35 @@
+#alerts-container
+  position: absolute
+  right: 0
+  left: 0
+  top: 80px
+  height: 80px
+
+  .alert
+    @include margin(bottom, 2)
+    @include padding(all, 1)
+
+    margin-left: auto
+    margin-right: auto
+    height: 60px
+    width: 90%
+    max-width: 440px
+    text-align: left
+    color: $light
+    border-radius: 4px
+    background-color: $primary-gradient-1
+    box-shadow: $dark-shadow
+
+    .alert-message
+      line-height: 36px
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+      width: 90%
+      font-size: 1.2rem
+
+    .remove-alert-button
+      font-size: 1.8rem
+      position: absolute
+      right: 20px
+      top: 20px

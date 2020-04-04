@@ -1,111 +1,328 @@
-$accent: #1765EC
-$light: #E1E1E1 
-$dark: #313131
-$white: #FFFFFF
-$danger: rgba(255, 80, 80)
+@use 'sass:color'
 
-$navbar-height-desktop: 82px
-$sidebar-width-desktop: 172px
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap')
+  
+// Variables
+$header-font: 'Montserrat', sans-serif
+$body-font: 'Montserrat', sans-serif
 
-$line-width: 1px
+$light: #ffffff
+$dark: #333747
 
-$font-stack: 'Noto-Sans', sans-serif
+$primary-gradient-1: #FF3366
+$primary-gradient-2: #FF5F58 
+$primary-gradient: linear-gradient(45deg, $primary-gradient-1, $primary-gradient-2)
 
-$smooth-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff
+$dark-gradient-1: #1F222E
+$dark-gradient-2: #35394A
+$dark-gradient: linear-gradient(45deg, $dark-gradient-1, $dark-gradient-2)
 
-// Import molecules
-@import 'button'
-@import 'sidebar/sidebar'
-@import 'navigation'
-@import 'spinner'
-@import 'sidebar/accordian/accordian'
-@import 'new_event_form/new_event_form'
+$light-gradient-1: #ffffff
+$light-gradient-2: #ffffff
+$light-gradient: linear-gradient(45deg, $light-gradient-1, $light-gradient-2)
 
-// Animations
-@keyframes spin 
-  0% 
-    transform: rotate(0deg)
-  100%
-    transform: rotate(360deg)
+$dark-shadow: 0 1px 1px color.scale($dark-gradient-1, $alpha: -85%), 0 2px 2px color.scale($dark-gradient-1, $alpha: -85%), 0 4px 4px color.scale($dark-gradient-1, $alpha: -85%), 0 8px 8px color.scale($dark-gradient-1, $alpha: -85%), 0 16px 16px color.scale($dark-gradient-1, $alpha: -85%)
 
-// Resets
-*
-  box-sizing: border-box
-  margin: 0
-  padding: 0
+$spacing-1: 1.2rem
+$spacing-2: 2.4rem
+$spacing-3: 3.6rem
+$spacing-4: 6rem
+$spacing-5: 10rem
 
-// Global styles
-body 
+$max-width: 972px
+
+// Mixins
+
+/// Adds a breakpoint 
+/// 
+/// @param {string} $width
+///   The size of the target breakpoint 
+/// @param {string} $type
+///   min or max width
+$breakpoints: ( "extra-small": 446px, "small": 768px, "medium": 992px, "large": 640px, "extra-large": 768px )
+  
+@mixin mq($width, $type: min)
+    @if map_has_key($breakpoints, $width)
+        $width: map_get($breakpoints, $width)
+        @if $type == max
+            $width: $width - 1px
+        @media only screen and (#{$type}-width: $width) 
+            @content
+
+@mixin faint-light($percent: -50%)
+  color: color.scale($light, $alpha: $percent)
+
+@mixin faint-dark($percent: -50%)
+  color: color.scale($dark, $alpha: $percent)
+
+/// Adds margin or padding
+/// 
+/// @param {string} $direction
+///   The direction to add margin or padding.
+///   top, right, bottom, left, all, x, y
+/// @param {int} $spacing
+///   The amout of spacing to add
+///   1, 2, 3, 4, 5
+$spacings: (1: $spacing-1, 2: $spacing-2, 3: $spacing-3, 4: $spacing-4, 5: $spacing-5)
+
+@mixin margin($direction, $spacing) 
+  @if $direction == "all"
+    margin: map-get($spacings, $spacing)
+  @else if $direction == "x"
+    margin-right: map-get($spacings, $spacing)
+    margin-left: map-get($spacings, $spacing)
+  @else if $direction == "y"
+    margin-top: map-get($spacings, $spacing)
+    margin-bottom: map-get($spacings, $spacing)
+  @else 
+    margin-#{$direction}: map-get($spacings, $spacing)
+
+@mixin padding($direction, $spacing) 
+  @if $direction == "all"
+    padding: map-get($spacings, $spacing)
+  @else if $direction == "x"
+    padding-right: map-get($spacings, $spacing)
+    padding-left: map-get($spacings, $spacing)
+  @else if $direction == "y"
+    padding-top: map-get($spacings, $spacing)
+    padding-bottom: map-get($spacings, $spacing)
+  @else 
+    padding-#{$direction}: map-get($spacings, $spacing)
+
+@mixin is-narrow()
+  max-width: $max-width
+  margin-left: auto
+  margin-right: auto
+
+@mixin button($align)
+  @include margin(top, 2)
+  @include margin(bottom, 4)
+
+  display: inline-block
+  padding: 1rem 2rem
+  border: 4px solid $primary-gradient-1
+  color: $dark-gradient-1
+  cursor: pointer
+  font:
+    weight: 700
+    size: 1.4rem
+
+  &:hover
+    background-image: $primary-gradient
+    color: $light
+
+// Import modules
+@import "_navbar"
+@import "_inputs"
+@import "_auth-routes" 
+@import "landing"
+@import "alerts"
+@import "_footer"
+@import "dashboard/_dashboard.sass"
+@import "dashboard/_account.sass"
+
+// Get Sassy
+html 
+  font-size: 10px
+  
+body
+  font-family: $body-font
   color: $dark
-  font-family: 'Noto-Sans', sans-serif
 
-h1 
-  font-size: 64px
-  font-weight: 800
-  letter-spacing: 8px
-  text-transform: uppercase
+html *
+  box-sizing: border-box
+
+// Typography
+h1, h2, h3, h4, h5, h6
+  font-family: $header-font
+  color: $primary-gradient-1
+
+h1
+  font-size: 4rem
 
 h2
-  color: $accent
-  font-size: 35px
-  letter-spacing: 16px
-  text-transform: uppercase
-  font-weight: 300
+  font-size: 3rem
 
 h3
-  color: $dark
-  font-size: 24px
+  font-size: 2.4rem
+
+h4
+  font-size: 2.0rem
+  
+h5
+  font-size: 1.8rem
+  
+h6
+  font-size: 1.6rem
 
 a
-  color: $dark
-  text-decoration: none
+  color: inherit
+  font-size: inherit
+  text-decoration: underline
 
-  &.light
-    color: $white
+  &:hover
+    color: $primary-gradient-1
 
-input, textarea
-  font-family: $font-stack
-  font-size: 1rem
+p
+  font-family: $body-font
+  font-size: 1.4rem
+  line-height: 1.6
+
+// Inputs
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="range"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"]
+  @include faint-dark(-20%)
+  
+  font-family: $body-font
   width: 100%
-  display: block
-  padding: 16px
-  margin-bottom: 1rem
+  border-bottom: 1px solid color.scale($dark-gradient-1, $alpha: -50%)
+  margin-bottom: $spacing-1
+  font-size: 1.4rem
+  padding-top: $spacing-1
+  padding-bottom: $spacing-1
+
+  &::placeholder
+    color: color.scale($dark-gradient-1, $alpha: -65%)
+    transition: 300ms ease-in-out
 
   &:focus
-    outline: 1px solid $accent
+    &::placeholder
+      color: color.scale($dark-gradient-1, $alpha: -50%)
 
-button[type='submit']
-  
-textarea
-  height: 200px
-  width: 100%
-  resize: none
+label
+  font-family: $body-font
+  color: color.scale($dark-gradient-1, $alpha: -70%)
 
-// Website layout
-// All pages should have at most two direct children 
-// under .app, 'nav' and a wrapper. Direct children will be 'gridded' apart
-.app
+select
+  font-family: $body-font
+  display: block
+  padding: 1rem
+  border: 1px solid color.scale($dark-gradient-1, $alpha: -50%)
+
+.button
+  color: $dark
+  font:
+    family: $body-font
+    weight: 700
+    size: 1.4rem
+  text-decoration: none
+  border: 
+    style: solid
+    width: 4px
+    color: transparent
+    image: $primary-gradient
+    image-slice: 1
+  padding: 12px 24px
+  cursor: pointer
+  transition: 300ms
+
+  &:hover
+    color: $dark
+    background-image: $primary-gradient
+
+// Layout
+
+#root
   display: grid
-  grid-template-columns: auto
-  grid-template-rows: 82px auto
-  width: 100vw
-  height: 100vh
+  grid-template-rows: 80px auto 100px
+  grid-template-areas: "navbar" "main" "footer"
+  min-height: 100vh
 
-  nav
-    grid-column: 1 / 2
+nav
+  grid-area: navbar
 
-  .timeline_wrapper
-    display: grid
-    grid-template-columns: 180px auto
-    width: 100%
-    height: 100%
+main
+  grid-area: main
 
-  aside
-    grid-column: 1 / 2
+footer
+  grid-area: footer
 
-  main
-    grid-column: 2 / 3
+.container
+  @include is-narrow()
 
-header 
-  text-align: center
-  padding: 32px 16px
+.my-1
+  margin-top: $spacing-1
+  margin-bottom: $spacing-1
+.my-2
+  margin-top: $spacing-2
+  margin-bottom: $spacing-2
+.my-3
+  margin-top: $spacing-3
+  margin-bottom: $spacing-3
+.my-4
+  margin-top: $spacing-4
+  margin-bottom: $spacing-4
+
+.mx-1
+  margin-right: $spacing-1
+  margin-left: $spacing-1
+.mx-2
+  margin-right: $spacing-2
+  margin-left: $spacing-2
+.mx-3
+  margin-right: $spacing-3
+  margin-left: $spacing-3
+.mx-4
+  margin-right: $spacing-4
+  margin-left: $spacing-4
+
+.mt-1
+  margin-top: $spacing-1
+.mt-2
+  margin-top: $spacing-2
+.mt-3
+  margin-top: $spacing-3
+.mt-4
+  margin-top: $spacing-4
+
+.mr-1
+  margin-right: $spacing-1
+.mr-2
+  margin-right: $spacing-2
+.mr-3
+  margin-right: 3em
+.mr-4
+  margin-right: $spacing-4
+
+.mb-1
+  margin-bottom: $spacing-1
+.mb-2
+  margin-bottom: $spacing-2
+.mb-3
+  margin-bottom: $spacing-3
+.mb-4
+  margin-bottom: $spacing-4
+
+.ml-1
+  margin-left: $spacing-1
+.ml-2
+  margin-left: $spacing-2
+.ml-3
+  margin-left: $spacing-3
+.ml-4
+  margin-left: $spacing-4
+
+.fade-in 
+  animation: 500ms ease-in-out both fade-in
+
+// Animations
+@keyframes fade-in
+  0% 
+    opacity: 0
+    transform: translatey(-120px)
+  100%
+    opacity: 1
+    transform: translatey(0px)

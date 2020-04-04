@@ -1,0 +1,24 @@
+.dashboard-menu
+  @include is-narrow()
+  @include padding(y, 2)
+
+  .tabs    
+    @include margin(x, 2)
+
+    li
+      @include padding(all, 1)
+
+      display: inline-block
+      font-weight: bold
+      cursor: pointer
+
+      &.active
+        color: $light
+        background-image: $primary-gradient
+
+      &:not(:last-child)
+        @include margin(right, 1)
+
+.dashboard-main
+  @include is-narrow()
+  @include padding(x, 2)

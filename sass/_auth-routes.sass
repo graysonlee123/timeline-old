@@ -1,0 +1,73 @@
+.auth-card-container
+  background-image: $primary-gradient
+
+  form
+    @include padding(x, 2)
+    @include padding(y, 3)
+
+    background: $light-gradient
+
+    a
+      @include faint-dark()
+
+      &:hover
+        color: $primary-gradient-1
+
+    input
+      @include margin(bottom, 1)
+
+    h1
+      @include margin(bottom, 4)
+
+    p
+      @include faint-dark()
+      
+      font-size: 1rem
+
+    .submit-group
+      @include margin(bottom, 3)
+      @include margin(top, 3)
+
+      display: flex
+      flex-flow: row nowrap
+      align-items: center
+      justify-content: flex-start
+
+      .button 
+        @include margin(right, 2)
+
+  @include mq(extra-small)
+    form
+      @include padding(x, 4)
+      @include padding(y, 5)
+
+  @include mq(small)
+    form
+      @include padding(x, 4)
+      @include padding(y, 5)
+
+div.dual-field 
+  input
+    width: 100%
+
+  @include mq(small)
+    display: flex
+    justify-content: space-between
+
+    input
+      width: 48%
+
+@supports (display: grid) 
+  .auth-card-container
+    @include mq(small)
+      
+      display: grid
+      grid-template-columns: 1fr auto 1fr
+      grid-template-rows: 1fr auto 1fr
+      grid-template-areas: ". . ." ". form ." ". . ."
+    
+      form
+        @include margin(y, 5)
+
+        grid-area: form
+        height: auto

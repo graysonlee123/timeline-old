@@ -1,0 +1,46 @@
+$section-padding: 12rem 4rem
+  
+section
+  padding: $section-padding
+  text-align: center
+  color: $dark
+
+  &.hero  
+    h1
+      @include margin(bottom, 4)
+
+    p
+      @include margin(bottom, 5)
+
+    a.button
+      display: inline-block
+
+  &.is-bright
+    background-image: $primary-gradient
+
+.benefits-wrapper
+  figure
+    max-width: 446px
+    margin-left: auto
+    margin-right: auto
+    
+    &:not(:last-child)
+      @include margin(bottom, 5)
+
+    h3, p
+      color: $light
+    
+    h3
+      @include margin(bottom, 1)
+
+  @include mq(medium)
+    display: flex
+    flex-flow: row nowrap
+    justify-content: space-between
+
+    figure 
+      text-align: left
+
+      &:not(:last-child)
+        padding-right: 2rem
+        margin-bottom: unset

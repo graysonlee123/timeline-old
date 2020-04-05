@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Account from "./Account";
+import Account from "./account/Account";
 import classNames from "classnames";
 
 const Dashboard = ({ auth, location }) => {

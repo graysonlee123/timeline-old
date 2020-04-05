@@ -1,0 +1,89 @@
+@use 'sass:color';
+
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+// Variables
+$header-font: 'Montserrat', sans-serif;
+$body-font: 'Montserrat', sans-serif;
+
+$light: #ffffff;
+$dark: #333747;
+
+// Mixins
+
+/// Adds a breakpoint
+///
+/// @param {string} $width
+///   The size of the target breakpoint
+/// @param {string} $type
+///   min or max width
+$breakpoints: (
+  'extra-small': 446px,
+  'small': 768px,
+  'medium': 992px,
+  'large': 640px,
+  'extra-large': 768px,
+);
+
+@mixin mq($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+@mixin button($align) {
+
+}
+
+// Import modules
+
+// Get Sassy
+#root {
+  min-height: 100vh;
+}
+
+.webapp {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: "main" "nav";
+
+  .content {
+    padding: 32px;
+    grid-area: main;
+    overflow: scroll;
+  }
+
+  .nav {
+    grid-area: nav;
+    padding: 32px;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+  }
+}
+
+select {
+  border: {
+    width: 1px;
+    style: solid;
+    color: $dark;
+    radius: 3px;
+  }
+  font: {
+    family: $body-font;
+    size: 12px;
+  }
+  color: $dark;
+  width: 100px;
+  padding: 4px;
+  display: block;
+}

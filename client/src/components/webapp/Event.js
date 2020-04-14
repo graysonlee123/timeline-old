@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
-import Redirect from 'react';
 import axios from 'axios';
 
 class Event extends React.Component {

@@ -5,7 +5,7 @@ import { SET_ALERT, REMOVE_ALERT } from './types';
 export const setAlert = (
   msg,
   alertType = 'neutral',
-  timeout = 5000
+  timeout = 1000000
 ) => dispatch => {
   const id = uuidv4();
 

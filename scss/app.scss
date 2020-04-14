@@ -9,6 +9,9 @@ $body-font: 'Montserrat', sans-serif;
 
 $light: #ffffff;
 $dark: #333747;
+$accent: #57E1A9;
+
+$border-style: 1px solid #eee;
 
 // Mixins
 
@@ -43,10 +46,16 @@ $breakpoints: (
 }
 
 // Import modules
+@import './alerts.scss';
 
 // Get Sassy
+* {
+  box-sizing: border-box;
+}
+
 #root {
   min-height: 100vh;
+  font-family: $body-font;
 }
 
 .webapp {
@@ -66,8 +75,9 @@ $breakpoints: (
     grid-area: nav;
     padding: 32px;
     display: flex;
-    align-content: center;
+    align-items: center;
     justify-content: space-between;
+    border-top: $border-style;
   }
 }
 
@@ -86,4 +96,18 @@ select {
   width: 100px;
   padding: 4px;
   display: block;
+}
+
+.button {
+  $gray: #ccc;
+  padding: 10px 24px;
+  border: 2px solid $gray;
+  background-color: color.scale($gray, $alpha: -50%);
+  display: inline-block;
+  font-size: 12px;
+
+  &.button-accent {
+    background-color: $accent;
+    border-color: color.scale($accent, $lightness: -20%)
+  }
 }

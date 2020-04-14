@@ -9,7 +9,7 @@ const User = require('../../models/User');
 const Event = require('../../models/Event');
 
 // * @route   GET api/event/all
-// ? @desc    Get user's event by id
+// ? @desc    Get user's event by user id
 // ! @access  Private
 router.get('/all', auth, async (req, res) => {
   try {

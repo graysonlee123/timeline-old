@@ -1,5 +1,5 @@
-import axios from "axios";
-import { setAlert } from "./alert";
+import axios from 'axios';
+import { setAlert } from './alert';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -9,13 +9,14 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   ACCOUNT_UPDATE_SUCCESS,
-  ACCOUNT_UPDATE_FAIL
-} from "./types";
-import setAuthToken from "../utils/setAuthToken";
+  ACCOUNT_UPDATE_FAIL,
+  EVENTS_LOADED,
+} from './types';
+import setAuthToken from '../utils/setAuthToken';
 
 // * Loads the user's data into store with a simple verification backend route
 
-export const loadUser = () => async dispatch => {
+export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -23,33 +24,53 @@ export const loadUser = () => async dispatch => {
   // * After setting the token in the header above, verify the token with the backend
 
   try {
-    const res = await axios.get("/api/auth");
+    const user = await axios.get('/api/auth');
 
     dispatch({
       type: USER_LOADED,
-      payload: res.data
+      payload: user.data,
+    });
+
+    const events = await axios.get('/api/event/all');
+
+    dispatch({
+      type: EVENTS_LOADED,
+      payload: events.data,
     });
   } catch (err) {
     dispatch({
-      type: AUTH_ERROR
+      type: AUTH_ERROR,
     });
   }
 };
 
-export const register = ({ first_name, last_name, email, avatar, password }) => async dispatch => {
+export const register = ({
+  first_name,
+  last_name,
+  email,
+  avatar,
+  password,
+}) => async (dispatch) => {
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      'Content-Type': 'application/json',
+    },
   };
-  const body = JSON.stringify({ first_name, last_name, email, avatar, password, gender: 'none' });
+  const body = JSON.stringify({
+    first_name,
+    last_name,
+    email,
+    avatar,
+    password,
+    gender: 'none',
+  });
 
   try {
-    const res = await axios.post("/api/user", body, config);
+    const res = await axios.post('/api/user', body, config);
 
     dispatch({
       type: REGISTER_SUCCESS,
-      payload: res.data
+      payload: res.data,
     });
 
     dispatch(loadUser());
@@ -57,29 +78,29 @@ export const register = ({ first_name, last_name, email, avatar, password }) => 
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
     }
 
     dispatch({
-      type: REGISTER_FAIL
+      type: REGISTER_FAIL,
     });
   }
 };
 
-export const login = (email, password) => async dispatch => {
+export const login = (email, password) => async (dispatch) => {
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      'Content-Type': 'application/json',
+    },
   };
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post("/api/auth", body, config);
+    const res = await axios.post('/api/auth', body, config);
 
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: res.data
+      payload: res.data,
     });
 
     dispatch(loadUser());
@@ -87,46 +108,52 @@ export const login = (email, password) => async dispatch => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
     }
 
     dispatch({
-      type: LOGIN_FAIL
+      type: LOGIN_FAIL,
     });
   }
 };
 
-export const logout = () => dispatch => {
+export const logout = () => (dispatch) => {
   dispatch({ type: LOGOUT });
 };
 
-export const updateAccount = ({ first_name, last_name, email, avatar, gender }) => async dispatch => {
+export const updateAccount = ({
+  first_name,
+  last_name,
+  email,
+  avatar,
+  gender,
+}) => async (dispatch) => {
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      'Content-Type': 'application/json',
+    },
   };
   const body = JSON.stringify({ first_name, last_name, email, avatar, gender });
 
   try {
-    const res = await axios.put("/api/user", body, config);
+    const res = await axios.put('/api/user', body, config);
 
     dispatch({
       type: ACCOUNT_UPDATE_SUCCESS,
-      payload: res.data
+      payload: res.data,
     });
 
     dispatch(loadUser());
-    dispatch(setAlert("Your account has been updated", "success"))
+    dispatch(setAlert('Your account has been updated', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, "danger")));
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
     }
 
     dispatch({
-      type: ACCOUNT_UPDATE_FAIL
+      type: ACCOUNT_UPDATE_FAIL,
     });
   }
 };

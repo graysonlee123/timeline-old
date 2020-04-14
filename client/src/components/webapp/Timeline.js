@@ -1,18 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Timeline = () => {
-  return (
-    <div>
-      I'm the timeline
-      <Link to="/webapp/account">
-        Account
-      </Link>
-      <Link to="/webapp/settings">
-        Settings
-      </Link>
-    </div>
-  )
-}
+  const [closedMonthsData, setClosedMonths] = useState({
+    closedMonths: [],
+  });
 
-export default Timeline
+  const { closedMonths } = closedMonthsData;
+
+  const handleToggleMonth = (month) => {
+    setClosedMonths({closedMonths, ...closedMonths, month})
+  };
+
+  return (
+    <div className='timeline'>
+      <div className='events'>
+        <div className='month'>
+          <div className='title'>
+            <span onClick={(e) => handleToggleMonth('jan')}>Toggle</span>{' '}
+            January
+          </div>
+          <div className='event'>
+            <span className='title'>Event's title here</span>
+            <span className='tags'>Tag Tag</span>
+            <span className='day'>Event day here</span>
+          </div>
+        </div>
+        <div className='month'>
+          <div className='title'>
+            <span onClick={(e) => handleToggleMonth('feb')}>Toggle</span>{' '}
+            January
+          </div>
+          <div className='event'>
+            <span className='title'>Event's title here</span>
+            <span className='tags'>Tag Tag</span>
+            <span className='day'>Event day here</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Timeline;

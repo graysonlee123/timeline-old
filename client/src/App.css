@@ -1,6 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap");
+#alerts-container {
+  position: fixed;
+  top: 50px;
+  width: 80%;
+  margin: 0 10%;
+  background-color: #ffffff;
+  border-radius: 4px;
+  display: flex;
+  padding: 12px;
+}
+#alerts-container.success {
+  background-color: green;
+}
+* {
+  box-sizing: border-box;
+}
+
 #root {
   min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
 }
 
 .webapp {
@@ -19,8 +37,9 @@
   grid-area: nav;
   padding: 32px;
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: space-between;
+  border-top: 1px solid #eee;
 }
 
 select {
@@ -34,6 +53,18 @@ select {
   width: 100px;
   padding: 4px;
   display: block;
+}
+
+.button {
+  padding: 10px 24px;
+  border: 2px solid #ccc;
+  background-color: rgba(204, 204, 204, 0.5);
+  display: inline-block;
+  font-size: 12px;
+}
+.button.button-accent {
+  background-color: #57E1A9;
+  border-color: #26d48d;
 }
 
 /*# sourceMappingURL=App.css.map */

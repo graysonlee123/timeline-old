@@ -20,9 +20,7 @@ const Account = ({ user, updateAccount }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async (e) => {
     try {
       const payload = { first_name, last_name, email, avatar, gender };
 
@@ -36,7 +34,7 @@ const Account = ({ user, updateAccount }) => {
   return (
     <Fragment>
       <div className='content'>
-        <form onSubmit={(e) => onSubmit(e)}>
+        <form>
           <h2>Account Information</h2>
           <div className='input-group'>
             <label>First Name</label>
@@ -89,12 +87,13 @@ const Account = ({ user, updateAccount }) => {
               <option value='other'>Other</option>
             </select>
           </div>
-          <input type='submit' value='Save' />
         </form>
       </div>
       <div className='nav'>
         <div className="nav-left">
-          Done
+          <div className="button button-accent" onClick={handleSubmit}>
+            Done
+          </div>
         </div>
         <div className="nav-right">
           <Menu />

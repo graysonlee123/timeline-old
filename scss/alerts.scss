@@ -1,0 +1,17 @@
+#alerts-container {
+  position: fixed;
+  top: 50px;
+  width: 80%;
+  margin: 0 10%;
+  background-color: $light;
+  border-radius: 4px;
+  display: flex;
+  padding: 12px;
+  
+  &.success {
+    background-color: green;
+  }
+  
+  .alert {
+  }
+}

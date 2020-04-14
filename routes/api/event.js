@@ -60,16 +60,10 @@ router.post(
   [
     auth,
     [
-      check('name', 'Event name is required')
-        .not()
-        .isEmpty(),
-      check('date', 'Date is required')
-        .not()
-        .isEmpty(),
-      check('description', 'Description is required')
-        .not()
-        .isEmpty()
-    ]
+      check('name', 'Event name is required').not().isEmpty(),
+      check('date', 'Date is required').not().isEmpty(),
+      check('description', 'Description is required').not().isEmpty(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -85,7 +79,7 @@ router.post(
         name: name,
         date: date,
         description: description,
-        userId: req.user.id
+        userId: req.user.id,
       });
 
       const event = await newEvent.save();

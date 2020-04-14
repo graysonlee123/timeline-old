@@ -12,6 +12,7 @@ import Login from '../../components/auth/Login';
 import Alert from '../../components/Alert';
 import NoMatch from '../../components/NoMatch';
 import Event from '../webapp/Event';
+import NewEvent from '../webapp/NewEvent';
 
 const Routes = () => (
   <Router>
@@ -21,7 +22,8 @@ const Routes = () => (
       <Route exact path='/signup' component={SignUp} />
       <Route exact path='/login' component={Login} />
       <PrivateRoute exact path='/webapp' component={WebApp} />
-      <PrivateRoute path='/webapp/event' component={Event} />
+      <PrivateRoute exact path='/webapp/event/' component={Event} />
+      <PrivateRoute exact path='/webapp/event/new' component={NewEvent} />
       <Route path='*' component={NoMatch} />
     </Switch>
   </Router>

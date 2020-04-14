@@ -1,4 +1,4 @@
-import { EVENTS_LOADED } from '../actions/types';
+import { EVENTS_LOADED, EVENT_ADDED } from '../actions/types';
 
 const initialState = {
   events: null,
@@ -13,6 +13,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         ...payload,
+        isLoading: false,
+      };
+    case EVENT_ADDED:
+      return {
+        ...state,
+        events: [...state.events, payload.event],
         isLoading: false,
       };
     default:

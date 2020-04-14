@@ -10,3 +10,5 @@ export const LOGOUT = 'LOGOUT';
 export const ACCOUNT_UPDATE_SUCCESS = 'ACCOUNT_SUCCESS';
 export const ACCOUNT_UPDATE_FAIL = 'ACCOUNT_FAIL';
 export const EVENTS_LOADED = 'EVENTS_LOADED';
+export const EVENT_ADDED = 'EVENT_ADDED';
+export const ADD_EVENT_FAIL = 'ADD_EVENT_FAIL';

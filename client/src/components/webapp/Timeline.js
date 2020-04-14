@@ -1,45 +1,40 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Moment from 'react-moment';
 
-const Timeline = () => {
-  const [closedMonthsData, setClosedMonths] = useState({
-    closedMonths: [],
-  });
-
-  const { closedMonths } = closedMonthsData;
-
-  const handleToggleMonth = (month) => {
-    setClosedMonths({closedMonths, ...closedMonths, month})
-  };
-
-  return (
+const Timeline = ({ events, isLoading }) => {
+  return isLoading ? (
+    <div>Spinner</div>
+  ) : (
     <div className='timeline'>
       <div className='events'>
-        <div className='month'>
-          <div className='title'>
-            <span onClick={(e) => handleToggleMonth('jan')}>Toggle</span>{' '}
-            January
+        {events.map((event, i) => (
+          <div className='month' key={event._id}>
+            <div className='title'>
+              <span>{event.name}</span>
+            </div>
+            <div className='event-details'>
+              <span className='title'>{event.title}</span>
+              <span className='title'>Tag Tag</span>
+              <span className='title'>
+                <Moment format='DD' date={event.date} />
+              </span>
+            </div>
           </div>
-          <div className='event'>
-            <span className='title'>Event's title here</span>
-            <span className='tags'>Tag Tag</span>
-            <span className='day'>Event day here</span>
-          </div>
-        </div>
-        <div className='month'>
-          <div className='title'>
-            <span onClick={(e) => handleToggleMonth('feb')}>Toggle</span>{' '}
-            January
-          </div>
-          <div className='event'>
-            <span className='title'>Event's title here</span>
-            <span className='tags'>Tag Tag</span>
-            <span className='day'>Event day here</span>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default Timeline;
+Timeline.propTypes = {
+  events: PropTypes.array,
+};
+
+const mapStateToProps = (state) => ({
+  events: state.events.events,
+  isLoading: state.events.isLoading,
+});
+
+export default connect(mapStateToProps)(Timeline);

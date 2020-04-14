@@ -2,6 +2,7 @@ import { EVENTS_LOADED } from '../actions/types';
 
 const initialState = {
   events: null,
+  isLoading: true,
 };
 
 export default function (state = initialState, action) {
@@ -12,6 +13,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         ...payload,
+        isLoading: false,
       };
     default:
       return state;

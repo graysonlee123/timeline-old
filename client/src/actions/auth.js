@@ -14,7 +14,7 @@ import {
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
-// * Loads the user's data into store with a simple verification backend route
+// * Loads the user's data and event data into store with a simple verification backend route
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {

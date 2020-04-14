@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 
-const Timeline = ({ events, isLoading }) => {
+const Timeline = ({ events, isLoading, history }) => {
+  const handleEditEvent = (id) => {
+    return history.push(`/webapp/event?id=${id}`);
+  };
+
   return isLoading ? (
     <div>Spinner</div>
   ) : (
@@ -12,7 +16,9 @@ const Timeline = ({ events, isLoading }) => {
         {events.map((event, i) => (
           <div className='month' key={event._id}>
             <div className='title'>
-              <span>{event.name}</span>
+              <span onClick={() => handleEditEvent(event._id)}>
+                {event.name}
+              </span>
             </div>
             <div className='event-details'>
               <span className='title'>{event.title}</span>
@@ -30,6 +36,7 @@ const Timeline = ({ events, isLoading }) => {
 
 Timeline.propTypes = {
   events: PropTypes.array,
+  history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
